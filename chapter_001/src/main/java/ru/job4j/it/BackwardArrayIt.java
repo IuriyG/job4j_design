@@ -38,6 +38,6 @@ public class BackwardArrayIt implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        return data.length - point++;
+        return data[(data.length - 1) - point++];
     }
 }
