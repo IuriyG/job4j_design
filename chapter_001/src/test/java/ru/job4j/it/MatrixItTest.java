@@ -1,6 +1,5 @@
 package ru.job4j.it;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
@@ -84,7 +83,6 @@ public class MatrixItTest {
         assertThat(it.hasNext(), is(true));
     }
 
-    @Ignore
     @Test
     public void whenNoElements() {
         int[][] in = {{}, {}, {}};
