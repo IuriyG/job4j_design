@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
+ * <b>Итератор для двухмерного массива int[][].</b>
  * <b>Задание.</b>
  * Нужно с помощью указатель row column двигать указатель.
  * Добавлять новые поля в класс MatrixIt не нужно.
