@@ -30,11 +30,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        for (; pointer < data.length; pointer++) {
-            if (checkForEvenness()) {
-                return data[pointer++];
-            }
-        }
-        return pointer;
+        checkForEvenness();
+        return data[pointer++];
     }
 }
