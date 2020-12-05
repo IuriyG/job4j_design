@@ -29,23 +29,16 @@ public class FlatMap<T> implements Iterator<T> {
         if (cursor == null) {
             cursor = data.next();
         }
-        while (data.hasNext() || cursor.hasNext()) {
-            if (!cursor.hasNext()) {
-                cursor = data.next();
-            } else {
-                return true;
-            }
+        while (data.hasNext() && !cursor.hasNext()) {
+            cursor = data.next();
         }
-        return false;
+        return cursor.hasNext();
     }
 
     @Override
     public T next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
-        }
-        if (!cursor.hasNext() && data.hasNext()) {
-            cursor = data.next();
         }
         return cursor.next();
     }
