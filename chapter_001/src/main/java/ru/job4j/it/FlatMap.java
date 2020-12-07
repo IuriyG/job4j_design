@@ -5,6 +5,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Класс FlatMap принимает объект вложенных итераторов.
+ * В классе нужно реализовать два метода: next и hasNext.
+ * Метод next должен последовательно вернуть числа из вложенных итераторов.
+ * В этом задании нельзя копировать элементы во временный список.
+ * <b>Задание.</b>
+ * 1. Допишите методы next и hasNext.
+ * 2. Загрузите код в репозиторий. Оставьте ссылку на коммит.
+ * 3. Переведите на ответственного.
+ *
+ * @param <T>
+ */
 public class FlatMap<T> implements Iterator<T> {
     private final Iterator<Iterator<T>> data;
     private Iterator<T> cursor = Collections.emptyIterator();
@@ -13,6 +25,13 @@ public class FlatMap<T> implements Iterator<T> {
         this.data = data;
     }
 
+    /**
+     * В Stream API есть метод flatMap. Он позволяет получить из элемента потока другой поток.
+     * В этом задании Вам нужно создать подобное поведение.
+     * Демонстрация работы метода.
+     *
+     * @param args входящие аргументы.
+     */
     public static void main(String[] args) {
         Iterator<Iterator<Integer>> data = List.of(
                 List.of(1, 2, 3).iterator(),
@@ -25,6 +44,11 @@ public class FlatMap<T> implements Iterator<T> {
         }
     }
 
+    /**
+     * Метод hasNext проверяет, если ли следующий элемент.
+     *
+     * @return результат проверки.
+     */
     @Override
     public boolean hasNext() {
         while (data.hasNext() && !cursor.hasNext()) {
@@ -33,6 +57,11 @@ public class FlatMap<T> implements Iterator<T> {
         return cursor.hasNext();
     }
 
+    /**
+     * Метод последовательно возвращает числа из вложенных итераторов.
+     *
+     * @return результат проверки.
+     */
     @Override
     public T next() {
         if (!hasNext()) {

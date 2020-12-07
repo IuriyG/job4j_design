@@ -17,6 +17,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     /**
      * Метод проверяет числа на четность.
+     *
      * @return результат проверки чисел в массиве data.
      */
     public boolean checkForEvenness() {
@@ -25,6 +26,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     /**
      * Метод проверяет числа массива data на четность.
+     *
      * @return true если четные и false если нечетные.
      */
     @Override
@@ -39,6 +41,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     /**
      * Метод возвращает только четные числа.
+     *
      * @return четные числа из массива data.
      */
     @Override
