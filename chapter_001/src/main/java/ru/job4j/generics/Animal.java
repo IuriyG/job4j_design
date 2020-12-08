@@ -1,5 +1,8 @@
 package ru.job4j.generics;
 
+/**
+ * Модель данных для Animal.
+ */
 public class Animal {
     String gender;
     int age;
