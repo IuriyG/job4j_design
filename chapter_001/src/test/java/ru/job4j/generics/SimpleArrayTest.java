@@ -1,65 +1,60 @@
 package ru.job4j.generics;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SimpleArrayTest {
-    SimpleArray<Object> array = new SimpleArray<>(new Object[]{
-            1, 2, 3});
+    private final int capacity = 10;
+    SimpleArray<Integer> array = new SimpleArray<>(capacity);
+
+    @Before
+    public void SetUp() {
+        array.add(8);
+        array.add(4);
+        array.add(9);
+        array.add(33);
+    }
 
     @Test
     public void whenUseSet() {
-        SimpleArray<Object> expected = new SimpleArray<>(
-                new Object[]{1, 2, new ArrayList<>()}
-        );
-        array.set(2, new ArrayList<>());
-        assertThat(array, is(expected));
+        array.set(3, 8);
+        assertThat(array.get(3), is(8));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenUseSetAndHaveIOOE() {
-        SimpleArray<Object> expected = new SimpleArray<>(
-                new Object[]{1, 2, new ArrayList<>()}
-        );
-        array.set(4, new ArrayList<>());
-        assertThat(array, is(expected));
+        array.set(10, 33);
+        assertThat(array.get(10), is(33));
     }
 
     @Test
-    public void wheUseAdd() {
-        SimpleArray<Object> expected = new SimpleArray<>(
-                new Object[]{new ArrayList<>(), 2, 3});
-        array.add(new ArrayList<>());
-        assertThat(array, is(expected));
+    public void whenUseAdd() {
+        array.add(11);
+        assertThat(array.get(4), is(11));
     }
 
     @Test
-    public void wheUseRemove() {
-        SimpleArray<Object> expected = new SimpleArray<>(
-                new Object[]{2, 3, 3});
-        array.remove(0);
-        assertThat(array, is(expected));
+    public void whenUseRemove() {
+        array.remove(1);
+        assertThat(array.get(1), is(9));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void wheUseRemoveAndHaveIOOE() {
-        SimpleArray<Object> expected = new SimpleArray<>(
-                new Object[]{2, 3, 3});
-        array.remove(4);
-        assertThat(array, is(expected));
+    public void whenUseRemoveAndHaveIOOE() {
+        array.remove(10);
+        assertThat(array.get(1), is(2));
     }
 
     @Test
-    public void wheUseGet() {
-        assertThat(2, is(array.get(1)));
+    public void whenUseGet() {
+        assertThat(9, is(array.get(2)));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void wheUseGetAndHaveIOOE() {
-        assertThat(2, is(array.get(4)));
+    public void whenUseGetAndHaveIOOE() {
+        assertThat(2, is(array.get(10)));
     }
 }
