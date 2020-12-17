@@ -14,7 +14,7 @@ public class SimpleArrayTest {
      * Инициализация массива до начала теста.
      */
     @Before
-    public void SetUp() {
+    public void setUp() {
         array.add(8);
         array.add(4);
         array.add(9);
