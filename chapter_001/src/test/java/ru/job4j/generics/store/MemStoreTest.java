@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
 /**
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertNull;
  * @created 16.12.2020
  */
 public class MemStoreTest {
-    protected User user, user2, user3, user4, user5;
+    protected User user, user2, user3, user4, user5, user6;
     private MemStore<Base> memStore;
 
     @Before
@@ -23,6 +24,7 @@ public class MemStoreTest {
         user3 = new User("three");
         user4 = new User("four");
         user5 = new User("five");
+        user6 = new User("six");
         memStore.add(user);
         memStore.add(user2);
         memStore.add(user3);
@@ -37,19 +39,29 @@ public class MemStoreTest {
     public void whenUseReplace() {
         memStore.replace("two", user4);
         memStore.replace("one", user5);
+        memStore.replace("six", user);
         assertThat(memStore.findById("four"), is(user4));
         assertThat(memStore.findById("five"), is(user5));
+        assertNull(memStore.findById("six"));
     }
 
     @Test
     public void whenUseDelete() {
-        memStore.delete("four");
-        assertNull(memStore.findById("four"));
+        memStore.delete("two");
+        memStore.delete("six");
+        assertNull(memStore.findById("two"));
+        assertNull(memStore.findById("six"));
     }
 
     @Test
     public void whenUseFindById() {
         assertThat(memStore.findById("three"), is(user3));
-        assertNull(memStore.findById("none"));
+        assertNull(memStore.findById("six"));
+    }
+
+    @Test
+    public void whenUseSearchById() {
+        assertThat(memStore.searchById("three"), is(true));
+        assertFalse(memStore.searchById("six"));
     }
 }

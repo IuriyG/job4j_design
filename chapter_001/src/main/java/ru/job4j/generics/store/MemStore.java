@@ -10,6 +10,18 @@ import java.util.List;
 public final class MemStore<T extends Base> implements Store<T> {
 
     private final List<T> mem = new ArrayList<>();
+    private int counter;
+
+    public boolean searchById(String id) {
+        counter = 0;
+        for (T t : mem) {
+            if (t.getId().equals(id)) {
+                return true;
+            }
+            this.counter++;
+        }
+        return false;
+    }
 
     @Override
     public void add(T model) {
@@ -18,32 +30,18 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        int counter = 0;
-        boolean result = false;
-        for (T t : mem) {
-            if (t.getId().equals(id)) {
-                mem.set(counter, model);
-                result = true;
-                break;
-            }
-            counter++;
+        if (searchById(id)) {
+            mem.set(this.counter, model);
         }
-        return result;
+        return true;
     }
 
     @Override
     public boolean delete(String id) {
-        int counter = 0;
-        boolean result = false;
-        for (T t : mem) {
-            if (t.getId().equals(id)) {
-                mem.remove(counter);
-                result = true;
-                break;
-            }
-            counter++;
+        if (searchById(id)) {
+            mem.remove(this.counter);
         }
-        return result;
+        return true;
     }
 
     @Override
