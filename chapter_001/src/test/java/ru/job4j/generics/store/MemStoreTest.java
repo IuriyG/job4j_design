@@ -5,12 +5,11 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
 /**
  * @author Iuriy Gaydarzhi.
- * @created 16.12.2020
+ * @since 16.12.2020
  */
 public class MemStoreTest {
     protected User user, user2, user3, user4, user5, user6;
@@ -61,7 +60,7 @@ public class MemStoreTest {
 
     @Test
     public void whenUseSearchById() {
-        assertThat(memStore.searchById("three"), is(true));
-        assertFalse(memStore.searchById("six"));
+        assertThat(memStore.searchIdByIndex("three"), is(2));
+        assertThat(memStore.searchIdByIndex("six"), is(-1));
     }
 }
