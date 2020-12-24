@@ -15,6 +15,9 @@ public class UserStoreTest {
     protected User user, user2, user3, user4, user5;
     private UserStore memStore;
 
+    /**
+     * Метод выполняется перед тестами.
+     */
     @Before
     public void setUp() {
         memStore = new UserStore();
@@ -28,23 +31,35 @@ public class UserStoreTest {
         memStore.add(user3);
     }
 
+    /**
+     * Тест метода add.
+     */
     @Test
     public void testAdd() {
         assertThat(memStore.findById("Jon"), is(user2));
     }
 
+    /**
+     * Тест метода findById.
+     */
     @Test
     public void testFindById() {
         assertThat(memStore.findById("Michele"), is(user3));
         assertNull(memStore.findById("none"));
     }
 
+    /**
+     * Тест метода replace.
+     */
     @Test
     public void testReplace() {
         memStore.replace("Jon", user5);
         assertThat(memStore.findById("James"), is(user5));
     }
 
+    /**
+     * Тест метода delete.
+     */
     @Test
     public void testDelete() {
         memStore.delete("Jon");
