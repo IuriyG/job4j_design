@@ -1,6 +1,5 @@
 package ru.job4j.collection;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ConcurrentModificationException;
@@ -16,7 +15,7 @@ import static org.junit.Assert.assertThat;
  */
 public class SimpleArrayTest {
 
-    @Ignore
+    @Test
     public void whenAddThenGet() {
         SimpleArray<String> array = new SimpleArray<>(1);
         array.add("first");

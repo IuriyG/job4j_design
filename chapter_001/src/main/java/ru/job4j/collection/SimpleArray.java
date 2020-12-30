@@ -10,8 +10,8 @@ import java.util.Objects;
  * @since 26.12.2020
  */
 public class SimpleArray<T> implements Iterable<T> {
-    private final int index = 0;
     private final Object[] container;
+    private int index = 0;
     private int modCount;
 
     public SimpleArray(int capacity) {
@@ -20,14 +20,12 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public T get(int index) {
         checkIndex(index);
-        modCount++;
         return (T) this.container[index];
     }
 
     public void add(T model) {
         modCount++;
-
-        this.container[index] = model;
+        this.container[index++] = model;
     }
 
     public void checkIndex(int index) {
@@ -43,19 +41,10 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                boolean result = false;
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                if (pointer <= index) {
-                    for (int i = pointer; i < container.length; i++) {
-                        if (container[i] != null) {
-                            result = true;
-                            break;
-                        }
-                    }
-                }
-                return result;
+                return pointer < index;
             }
 
             @Override
