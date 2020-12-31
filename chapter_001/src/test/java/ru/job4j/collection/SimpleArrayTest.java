@@ -58,4 +58,14 @@ public class SimpleArrayTest {
         array.add("second");
         it.next();
     }
+
+    @Test
+    public void whenArrayFullThenChangeSize() {
+        SimpleArray<String> array = new SimpleArray<>(1);
+        array.add("first");
+        array.add("two");
+        array.add("three");
+        array.add("four");
+        array.add("five");
+    }
 }
