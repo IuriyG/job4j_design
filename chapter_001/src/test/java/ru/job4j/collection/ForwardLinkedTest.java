@@ -1,7 +1,6 @@
 package ru.job4j.collection;
 
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -30,7 +29,6 @@ public class ForwardLinkedTest {
         linked.deleteFirst();
     }
 
-    @Ignore
     @Test
     public void whenMultiDelete() {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
