@@ -11,6 +11,11 @@ import java.util.NoSuchElementException;
 public class ForwardLinked<T> implements Iterable<T> {
     private Node<T> head;
 
+    /**
+     * Метод добавляет значение в узел.
+     *
+     * @param value Значение.
+     */
     public void add(T value) {
         Node<T> node = new Node<>(value, null);
         if (head == null) {
@@ -24,6 +29,11 @@ public class ForwardLinked<T> implements Iterable<T> {
         tail.next = node;
     }
 
+    /**
+     * Метод удаляет значение.
+     *
+     * @return Значение.
+     */
     public T deleteFirst() {
         Node<T> node = head;
         if (head == null) {
@@ -33,16 +43,29 @@ public class ForwardLinked<T> implements Iterable<T> {
         return node.value;
     }
 
+    /**
+     * Итератор.
+     *
+     * @return Новый итератор.
+     */
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
             Node<T> node = head;
 
+            /**
+             * Метод проверяет есть ли следующий элемент.
+             * @return Значение.
+             */
             @Override
             public boolean hasNext() {
                 return node != null;
             }
 
+            /**
+             * Метод возвращает первое значение.
+             * @return Значение.
+             */
             @Override
             public T next() {
                 if (!hasNext()) {
@@ -55,6 +78,11 @@ public class ForwardLinked<T> implements Iterable<T> {
         };
     }
 
+    /**
+     * Модель для узла.
+     *
+     * @param <T> Значение.
+     */
     private static class Node<T> {
         T value;
         Node<T> next;
