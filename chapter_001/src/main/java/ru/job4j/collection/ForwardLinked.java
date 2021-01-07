@@ -6,6 +6,10 @@ import java.util.NoSuchElementException;
 /**
  * @author Iuriy Gaydarzhi.
  * @since 04.01.2021
+ *
+ * <b>Задание.</b>>
+ * Реализовать метод deleteFirst().
+ * В методе delete должна быть проверка, что head != null.
  */
 
 public class ForwardLinked<T> implements Iterable<T> {
