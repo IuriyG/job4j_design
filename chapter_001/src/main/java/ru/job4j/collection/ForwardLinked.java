@@ -34,7 +34,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     /**
-     * Метод удаляет значение.
+     * Метод удаляет первое значение.
      *
      * @return Значение.
      */
@@ -44,6 +44,15 @@ public class ForwardLinked<T> implements Iterable<T> {
             throw new NoSuchElementException();
         }
         head = head.next;
+        return node.value;
+    }
+
+    public T deleteLast() {
+        Node<T> node = head.next;
+        if (node == null) {
+            node = head;
+        }
+        head.next = null;
         return node.value;
     }
 
