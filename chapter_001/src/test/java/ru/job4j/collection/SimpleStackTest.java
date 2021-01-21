@@ -2,6 +2,8 @@ package ru.job4j.collection;
 
 import org.junit.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -32,6 +34,13 @@ public class SimpleStackTest {
         SimpleStack<Integer> stack = new SimpleStack<>();
         stack.push(1);
         stack.push(2);
+        stack.pop();
+        assertThat(stack.pop(), is(1));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void whenPoll() {
+        SimpleStack<Integer> stack = new SimpleStack<>();
         stack.pop();
         assertThat(stack.pop(), is(1));
     }

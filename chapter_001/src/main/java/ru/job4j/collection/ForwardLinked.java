@@ -48,12 +48,19 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public T deleteLast() {
-        Node<T> node = head.next;
-        if (node == null) {
-            node = head;
+        if (head == null) {
+            throw new NoSuchElementException();
         }
-        head.next = null;
-        return node.value;
+        Node<T> node;
+        if (head.next == null) {
+            node = head;
+            head = null;
+            return node.value;
+        }
+        while (head.next != null) {
+            head.next = null;
+        }
+        return head.value;
     }
 
     /**
@@ -96,7 +103,7 @@ public class ForwardLinked<T> implements Iterable<T> {
      *
      * @param <T> Значение.
      */
-    private static class Node<T> {
+    static class Node<T> {
         T value;
         Node<T> next;
 
