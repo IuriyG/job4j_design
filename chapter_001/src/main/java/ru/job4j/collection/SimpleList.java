@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * @author Iuriy Gaydarzhi.
  * @since 02.01.2021
- * <p>
+ *
  * Необходимо создать динамический контейнер с методами:
  * 1) add(E value); (добавляет в конец);
  * 2) E get(int index);

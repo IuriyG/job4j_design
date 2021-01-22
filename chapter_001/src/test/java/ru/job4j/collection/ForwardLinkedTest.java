@@ -13,7 +13,6 @@ import static org.junit.Assert.assertThat;
  * @author Iuriy Gaydarzhi.
  * @since 04.01.2021
  */
-
 public class ForwardLinkedTest {
     @Test(expected = NoSuchElementException.class)
     public void whenDeleteFirst() {

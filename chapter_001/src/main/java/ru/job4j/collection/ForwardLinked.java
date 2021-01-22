@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * @author Iuriy Gaydarzhi.
  * @since 04.01.2021
  *
- * <b>Задание.</b>>
+ * <b>Задание.</b>
  * Реализовать метод deleteFirst().
  * В методе delete должна быть проверка, что head != null.
  */
@@ -47,6 +47,11 @@ public class ForwardLinked<T> implements Iterable<T> {
         return node.value;
     }
 
+    /**
+     * Метод удаляет последнее значение.
+     *
+     * @return Значение.
+     */
     public T deleteLast() {
         if (head == null) {
             throw new NoSuchElementException();
@@ -103,7 +108,7 @@ public class ForwardLinked<T> implements Iterable<T> {
      *
      * @param <T> Значение.
      */
-    static class Node<T> {
+    private static class Node<T> {
         T value;
         Node<T> next;
 
