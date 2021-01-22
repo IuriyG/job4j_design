@@ -3,7 +3,7 @@ package ru.job4j.collection;
 /**
  * @author Iuriy Gaydarzhi.
  * @since 19.01.2021
- *
+ * <p>
  * 1. Реализуйте класс Stack.
  * Метод pop() - должен возвращать значение и удалять его из коллекции.
  * Метод push(T value) - помещает значение в коллекцию.
@@ -15,22 +15,39 @@ package ru.job4j.collection;
  */
 public class SimpleStack<T> {
     private final ForwardLinked<T> linked = new ForwardLinked<>();
+    private int size;
 
     /**
-     * Метод возвращает значение и удаляет его из коллекции.
+     * Метод возвращает последнее значение и удаляет его из коллекции.
      *
      * @return Значение.
      */
     public T pop() {
+        size--;
         return linked.deleteLast();
     }
 
     /**
-     * Метод помещает значение в коллекцию
+     * Метод помещает значение в коллекцию.
      *
      * @param value Значение.
      */
     public void push(T value) {
+        size++;
         linked.add(value);
+    }
+
+    /**
+     * Метод возвращает первое значение и удаляет его из коллекции.
+     *
+     * @return Значение.
+     */
+    public T poll() {
+        size--;
+        return linked.deleteFirst();
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 }
