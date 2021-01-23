@@ -9,6 +9,7 @@ import java.util.Objects;
  * @author Iuriy Gaydarzhi.
  * @since 02.01.2021
  *
+ * <b>2. Создать контейнер на базе связанного списка.</b>
  * Необходимо создать динамический контейнер с методами:
  * 1) add(E value); (добавляет в конец);
  * 2) E get(int index);

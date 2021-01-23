@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
  * @author Iuriy Gaydarzhi.
  * @since 04.01.2021
  *
+ * <b>3. Удалить head в односвязном списке.</b>
  * <b>Задание.</b>
  * Реализовать метод deleteFirst().
  * В методе delete должна быть проверка, что head != null.
