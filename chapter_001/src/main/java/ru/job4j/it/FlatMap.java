@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
+ * <b>5.1.4. FlatMap для Iterator<Iterator>.</b>
  * Класс FlatMap принимает объект вложенных итераторов.
  * В классе нужно реализовать два метода: next и hasNext.
  * Метод next должен последовательно вернуть числа из вложенных итераторов.

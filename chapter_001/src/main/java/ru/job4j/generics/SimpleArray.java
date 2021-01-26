@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-/**
+/**<b>5.2.1. Реализовать SimpleArray<T>.</b>
  * В этом задании необходимо сделать универсальную обертку над массивом.
  * Создать класс: public class SimpleArray<T>
  * Добавить методы: add(T model), set(int index, T model), remove(int index), get(int index).
