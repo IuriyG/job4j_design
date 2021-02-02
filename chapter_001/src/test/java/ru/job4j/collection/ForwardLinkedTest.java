@@ -14,6 +14,7 @@ import static org.junit.Assert.assertThat;
  * @since 04.01.2021
  */
 public class ForwardLinkedTest {
+
     @Test(expected = NoSuchElementException.class)
     public void whenDeleteFirst() {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
