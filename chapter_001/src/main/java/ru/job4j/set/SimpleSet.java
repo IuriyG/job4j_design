@@ -9,10 +9,10 @@ import java.util.Iterator;
  * @since 01.02.2021
  */
 public class SimpleSet<E> implements Iterable<E> {
-    SimpleArray<E> simpleArray = new SimpleArray<>(10);
+    private final SimpleArray<E> simpleArray = new SimpleArray<>(10);
 
     public boolean add(E e) {
-        if (e != null && contains(e)) {
+        if (contains(e)) {
             simpleArray.add(e);
             return true;
         } else {
@@ -23,7 +23,9 @@ public class SimpleSet<E> implements Iterable<E> {
     public boolean contains(E e) {
         boolean rsl = true;
         for (E e1 : simpleArray) {
-            if (e1.equals(e)) {
+            if (e == null) {
+                break;
+            } else if (e.equals(e1)) {
                 rsl = false;
                 break;
             }
