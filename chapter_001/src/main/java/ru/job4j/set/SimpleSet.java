@@ -3,6 +3,7 @@ package ru.job4j.set;
 import ru.job4j.collection.SimpleArray;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -10,6 +11,7 @@ import java.util.Iterator;
  */
 public class SimpleSet<E> implements Iterable<E> {
     private final SimpleArray<E> simpleArray = new SimpleArray<>(10);
+    private int checkNull = 0;
 
     public boolean add(E e) {
         if (contains(e)) {
@@ -23,9 +25,14 @@ public class SimpleSet<E> implements Iterable<E> {
     public boolean contains(E e) {
         boolean rsl = true;
         for (E e1 : simpleArray) {
-            if (e == null) {
+            if (e == null && checkNull < 1) {
+                checkNull++;
                 break;
-            } else if (e.equals(e1)) {
+            } else if (e == null && checkNull == 1) {
+                rsl = false;
+                break;
+            }
+            if (Objects.requireNonNull(e).equals(e1)) {
                 rsl = false;
                 break;
             }

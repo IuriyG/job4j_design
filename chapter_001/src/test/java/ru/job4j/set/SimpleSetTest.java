@@ -29,8 +29,6 @@ public class SimpleSetTest {
         assertThat(it.next(), is("Omaha"));
         assertThat(it.next(), is(nullValue()));
         assertThat(it.next(), is("Tacoma"));
-        assertThat(it.next(), is(nullValue()));
         assertThat(it.next(), is("Maple V."));
-        assertThat(it.next(), is(nullValue()));
     }
 }
