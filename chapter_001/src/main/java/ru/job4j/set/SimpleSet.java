@@ -11,7 +11,6 @@ import java.util.Objects;
  */
 public class SimpleSet<E> implements Iterable<E> {
     private final SimpleArray<E> simpleArray = new SimpleArray<>(10);
-    private int checkNull = 0;
 
     public boolean add(E e) {
         if (contains(e)) {
@@ -25,14 +24,7 @@ public class SimpleSet<E> implements Iterable<E> {
     public boolean contains(E e) {
         boolean rsl = true;
         for (E e1 : simpleArray) {
-            if (e == null && checkNull < 1) {
-                checkNull++;
-                break;
-            } else if (e == null && checkNull == 1) {
-                rsl = false;
-                break;
-            }
-            if (Objects.requireNonNull(e).equals(e1)) {
+            if (Objects.equals(e1, e)) {
                 rsl = false;
                 break;
             }
