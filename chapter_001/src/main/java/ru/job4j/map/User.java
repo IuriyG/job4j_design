@@ -38,4 +38,12 @@ public class User {
             System.out.println(o);
         }
     }
+
+    @Override
+    public int hashCode() {
+        int result = birthday.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + children;
+        return result;
+    }
 }
