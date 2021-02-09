@@ -40,10 +40,25 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-        int result = birthday.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + children;
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+
+        if (children != user.children) {
+            return false;
+        }
+
+        if (!birthday.equals(user.birthday)) {
+            return false;
+        }
+
+        return name.equals(user.name);
     }
 }
