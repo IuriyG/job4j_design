@@ -3,71 +3,77 @@ package ru.job4j.map;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author Iuriy Gaydarzhi.
  * @since 10.02.2021
  */
 public class SimpleHashMapTest {
-    SimpleHashMap<Object, Object> map = new SimpleHashMap<>(2);
+    SimpleHashMap<String, String> map = new SimpleHashMap<>();
 
     @Before
     public void setUp() {
-        map.insert(13, "Bro");
-        map.insert(32, "BINGO. Mate");
+        map.insert("luly", "BIO. Mate");
+        map.insert("lul", "Mate");
+        map.insert("bl", "Mite");
+        map.insert("bolly", "GO");
     }
 
     @Test
     public void testInsert() {
-        assertThat(map.hash(13), is(1));
-        assertThat(map.hash(32), is(0));
+        map.insert("bake", "Bro");
+        assertThat(map.get("bake"), is("Bro"));
+        assertFalse(map.insert("lol", "night"));
+        assertFalse(map.insert("ground", "NUBS")); //хэш элемента - '-1', он не попадает в массив
     }
 
     @Test
     public void testGet() {
-        assertThat(map.get(13), is("Bro"));
-        assertThat(map.get(32), is("BINGO. Mate"));
+        map.insert("Luly", "BIO. Mate");
+        assertThat(map.get("luly"), is("BIO. Mate"));
+        assertThat(map.get("Bio Moon"), is("Нет такого элемента!"));
     }
 
     @Test
     public void testDelete() {
-        assertTrue(map.delete(13));
+        assertTrue(map.delete("bolly"));
     }
 
     @Test
-    public void testSize() {
-        map.insert(32, "Bo bo");
-        assertThat(map.getSize(), is(4));
-    }
-
-    @Test
-    public void testHash() {
-        assertThat(map.hash(13), is(13 % 2));
+    public void testResize() {
+        map.insert("Block", "Ask");
+        map.insert("Obs", "ABC");
+        map.insert("Bro", "Lion");
+        map.insert("No", "Again");
+        map.insert("Bob", "Brion");
+        map.insert("Noob", "Bio");
+        assertSame(map.getSize(), 10);
     }
 
     @Test
     public void testCheckIndex() {
-        assertTrue(map.checkIndex(13));
+        assertTrue(map.checkIndex("bl"));
+        assertTrue(map.checkIndex("lul"));
     }
 
     @Test
     public void testIterator() {
-        Iterator<Object> it = map.iterator();
-        assertThat(it.next(), is("BINGO. Mate"));
-        assertThat(it.next(), is("Bro"));
+        System.out.println(map.toString());
+        Iterator<String> it = map.iterator();
+        assertThat(it.next(), is("bl"));
+        assertThat(it.next(), is("lul"));
     }
 
-    @Test(expected = NoSuchElementException.class)
-    public void testIteratorNSEE() {
-        Iterator<Object> it = map.iterator();
-        assertThat(it.next(), is("BINGO. Mate"));
-        assertThat(it.next(), is("Bro"));
-        assertThat(it.next(), is("Bro"));
+    @Test(expected = ConcurrentModificationException.class)
+    public void testHasNextCME() {
+        Iterator<String> it = map.iterator();
+        map.insert("ubl", "Mie");
+        it.next();
     }
 }

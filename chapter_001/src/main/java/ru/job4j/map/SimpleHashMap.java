@@ -1,6 +1,6 @@
 package ru.job4j.map;
 
-import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -8,71 +8,117 @@ import java.util.NoSuchElementException;
  * @author Iuriy Gaydarzhi.
  * @since 10.02.2021
  */
-public class SimpleHashMap<K, V> implements Iterable<Object> {
-    private Object[] hashTable;
+public class SimpleHashMap<K, V> implements Iterable<K> {
+    private Node<K, V>[] hashTable = new Node[8];
     private int size;
+    private int modCount;
 
-    public SimpleHashMap(int capacity) {
-        this.hashTable = new Object[capacity];
-    }
 
-    public int hash(K key) {
-        return key.hashCode() % hashTable.length;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void insert(K key, V value) {
-        if (size == hashTable.length) {
-            newHashTable();
-        }
-        if (!checkIndex(key)) {
-            hashTable[hash(key)] = value;
-            size++;
+    public void resize() {
+        Node<K, V>[] tempHashTable = hashTable;
+        hashTable = new Node[tempHashTable.length * 2];
+        size = 0;
+        for (Node<K, V> node : tempHashTable) {
+            if (node != null) {
+                insert(node.getKey(), node.getValue());
+            }
         }
     }
 
-    public void newHashTable() {
-        hashTable = Arrays.copyOf(hashTable, hashTable.length * 2);
-        size *= 2;
-    }
-
-    public Object get(K key) {
-        return hashTable[hash(key)];
+    public boolean insert(K key, V value) {
+        if (size == hashTable.length * 0.75) {
+            resize();
+        }
+        Node<K, V> newNode = new Node<>(key, value);
+        if (!checkIndex(key) && hash(key) >= 0) {
+            hashTable[hash(key)] = newNode;
+            this.size++;
+            this.modCount++;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean delete(K key) {
         if (checkIndex(key)) {
             hashTable[hash(key)] = null;
+            this.size--;
+            this.modCount++;
             return true;
         }
         return false;
     }
 
     public boolean checkIndex(K key) {
-        return hashTable[hash(key)] != null;
+        for (Node<K, V> node : hashTable) {
+            if (node != null) {
+                if (hash(key) == hash(node.getKey())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int hash(K key) {
+        return key == null ? 0 : key.hashCode() % hashTable.length;
+    }
+
+    public V get(K key) {
+        if (checkIndex(key)) {
+            return hashTable[hash(key)].value;
+        } else {
+            return (V) "Нет такого элемента!";
+        }
     }
 
     @Override
-    public Iterator<Object> iterator() {
-
+    public Iterator<K> iterator() {
         return new Iterator<>() {
+            private final int expectedModCount = modCount;
             private int pointer = 0;
 
             @Override
             public boolean hasNext() {
-                return pointer < hashTable.length;
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                while (hashTable[pointer] == null && pointer < hashTable.length - 1) {
+                    pointer++;
+                }
+                return hashTable[pointer] != null;
             }
 
             @Override
-            public Object next() {
+            public K next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return hashTable[pointer++];
+                return hashTable[pointer++].key;
             }
         };
+    }
+
+    protected static class Node<K, V> {
+        private final K key;
+        private final V value;
+
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        public K getKey() {
+            return key;
+        }
     }
 }
