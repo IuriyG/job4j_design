@@ -57,14 +57,7 @@ public class SimpleHashMapTest {
     }
 
     @Test
-    public void testCheckIndex() {
-        assertTrue(map.checkIndex("bl"));
-        assertTrue(map.checkIndex("lul"));
-    }
-
-    @Test
     public void testIterator() {
-        System.out.println(map.toString());
         Iterator<String> it = map.iterator();
         assertThat(it.next(), is("bl"));
         assertThat(it.next(), is("lul"));

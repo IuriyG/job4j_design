@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
  * @since 10.02.2021
  */
 public class SimpleHashMap<K, V> implements Iterable<K> {
+    private final double loadFactor = 0.75;
     private Node<K, V>[] hashTable = new Node[8];
     private int size;
     private int modCount;
-
 
     public void resize() {
         Node<K, V>[] tempHashTable = hashTable;
@@ -26,37 +26,31 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     public boolean insert(K key, V value) {
-        if (size == hashTable.length * 0.75) {
+        if (size == hashTable.length * loadFactor) {
             resize();
         }
         Node<K, V> newNode = new Node<>(key, value);
-        if (!checkIndex(key) && hash(key) >= 0) {
-            hashTable[hash(key)] = newNode;
-            this.size++;
-            this.modCount++;
-            return true;
+        int index = hash(key);
+        if (index >= 0) {
+            if (hashTable[index] == null) {
+                hashTable[hash(key)] = newNode;
+                this.size++;
+                this.modCount++;
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
     }
 
     public boolean delete(K key) {
-        if (checkIndex(key)) {
+        if (hashTable[hash(key)] != null) {
             hashTable[hash(key)] = null;
             this.size--;
             this.modCount++;
             return true;
-        }
-        return false;
-    }
-
-    public boolean checkIndex(K key) {
-        for (Node<K, V> node : hashTable) {
-            if (node != null) {
-                if (hash(key) == hash(node.getKey())) {
-                    return true;
-                }
-            }
         }
         return false;
     }
@@ -70,8 +64,9 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     public V get(K key) {
-        if (checkIndex(key)) {
-            return hashTable[hash(key)].value;
+        int index = hash(key);
+        if (hashTable[index] != null) {
+            return hashTable[index].getValue();
         } else {
             return (V) "Нет такого элемента!";
         }
