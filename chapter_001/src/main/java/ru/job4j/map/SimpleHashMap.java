@@ -3,6 +3,7 @@ package ru.job4j.map;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -14,7 +15,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     private int size;
     private int modCount;
 
-    public void resize() {
+    private void resize() {
         Node<K, V>[] tempHashTable = hashTable;
         hashTable = new Node[tempHashTable.length * 2];
         size = 0;
@@ -26,27 +27,23 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     public boolean insert(K key, V value) {
-        if (size == hashTable.length * loadFactor) {
+        if (size >= hashTable.length * loadFactor) {
             resize();
         }
         Node<K, V> newNode = new Node<>(key, value);
         int index = hash(key);
-        if (index >= 0) {
-            if (hashTable[index] == null) {
-                hashTable[hash(key)] = newNode;
-                this.size++;
-                this.modCount++;
-                return true;
-            } else {
-                return false;
-            }
+        if (hashTable[index] == null) {
+            hashTable[hash(key)] = newNode;
+            this.size++;
+            this.modCount++;
+            return true;
         } else {
             return false;
         }
     }
 
     public boolean delete(K key) {
-        if (hashTable[hash(key)] != null) {
+        if ((Objects.equals(hashTable[hash(key)].key, key))) {
             hashTable[hash(key)] = null;
             this.size--;
             this.modCount++;
@@ -65,7 +62,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
     public V get(K key) {
         int index = hash(key);
-        if (hashTable[index] != null) {
+        if (hashTable[index] != null && (Objects.equals(hashTable[index].key, key))) {
             return hashTable[index].getValue();
         } else {
             return (V) "Нет такого элемента!";

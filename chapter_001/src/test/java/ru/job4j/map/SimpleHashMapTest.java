@@ -30,7 +30,6 @@ public class SimpleHashMapTest {
         map.insert("bake", "Bro");
         assertThat(map.get("bake"), is("Bro"));
         assertFalse(map.insert("lol", "night"));
-        assertFalse(map.insert("ground", "NUBS")); //хэш элемента - '-1', он не попадает в массив
     }
 
     @Test
