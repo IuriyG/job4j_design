@@ -7,6 +7,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
@@ -36,12 +37,13 @@ public class SimpleHashMapTest {
     public void testGet() {
         map.insert("Luly", "BIO. Mate");
         assertThat(map.get("luly"), is("BIO. Mate"));
-        assertThat(map.get("Bio Moon"), is("Нет такого элемента!"));
+        assertThat(map.get("Bio Moon"), is(nullValue()));
     }
 
     @Test
     public void testDelete() {
         assertTrue(map.delete("bolly"));
+        assertFalse(map.delete("boy"));
     }
 
     @Test

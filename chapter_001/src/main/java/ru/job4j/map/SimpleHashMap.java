@@ -43,7 +43,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     public boolean delete(K key) {
-        if ((Objects.equals(hashTable[hash(key)].key, key))) {
+        if (hashTable[hash(key)] != null && Objects.equals(hashTable[hash(key)].key, key)) {
             hashTable[hash(key)] = null;
             this.size--;
             this.modCount++;
@@ -61,11 +61,11 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     public V get(K key) {
-        int index = hash(key);
-        if (hashTable[index] != null && (Objects.equals(hashTable[index].key, key))) {
-            return hashTable[index].getValue();
+        Node<K, V> index = hashTable[hash(key)];
+        if (index != null && (Objects.equals(index.key, key))) {
+            return index.getValue();
         } else {
-            return (V) "Нет такого элемента!";
+            return null;
         }
     }
 
