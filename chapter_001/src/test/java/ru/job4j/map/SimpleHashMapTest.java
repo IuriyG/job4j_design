@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -30,7 +31,8 @@ public class SimpleHashMapTest {
     public void testInsert() {
         map.insert("bake", "Bro");
         assertThat(map.get("bake"), is("Bro"));
-        assertFalse(map.insert("lol", "night"));
+        map.insert("bake", "night");
+        assertThat(map.get("bake"), is("night"));
     }
 
     @Test
@@ -68,6 +70,13 @@ public class SimpleHashMapTest {
     public void testHasNextCME() {
         Iterator<String> it = map.iterator();
         map.insert("ubl", "Mie");
+        it.next();
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testHasNextNSEE() {
+        SimpleHashMap<String, Integer> temp = new SimpleHashMap<>();
+        Iterator<String> it = temp.iterator();
         it.next();
     }
 }

@@ -16,24 +16,25 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     private int modCount;
 
     private void resize() {
-        Node<K, V>[] tempHashTable = hashTable;
-        hashTable = new Node[tempHashTable.length * 2];
-        size = 0;
-        for (Node<K, V> node : tempHashTable) {
-            if (node != null) {
-                insert(node.getKey(), node.getValue());
+        if (this.size >= hashTable.length * loadFactor) {
+            Node<K, V>[] tempHashTable = hashTable;
+            hashTable = new Node[tempHashTable.length * 2];
+            this.size = 0;
+            this.modCount = 0;
+            for (Node<K, V> node : tempHashTable) {
+                if (node != null) {
+                    insert(node.getKey(), node.getValue());
+                }
             }
         }
     }
 
     public boolean insert(K key, V value) {
-        if (size >= hashTable.length * loadFactor) {
-            resize();
-        }
+        resize();
         Node<K, V> newNode = new Node<>(key, value);
         int index = hash(key);
-        if (hashTable[index] == null) {
-            hashTable[hash(key)] = newNode;
+        if (hashTable[index] == null || Objects.equals(hashTable[index].key, key)) {
+            hashTable[index] = newNode;
             this.size++;
             this.modCount++;
             return true;
@@ -43,8 +44,9 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     public boolean delete(K key) {
-        if (hashTable[hash(key)] != null && Objects.equals(hashTable[hash(key)].key, key)) {
-            hashTable[hash(key)] = null;
+        int index = hash(key);
+        if (hashTable[index] != null && Objects.equals(hashTable[index].key, key)) {
+            hashTable[index] = null;
             this.size--;
             this.modCount++;
             return true;
