@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/IuriyG/job4j_design.svg?branch=master)](https://travis-ci.org/IuriyG/job4j_design)
+[![jdk14](https://img.shields.io/badge/JDK-14-blue.svg)](http://jdk.java.net/14/)
+![GitHub top language](https://img.shields.io/github/languages/top/IuriyG/job4j_design?color=success)
+[![CodeFactor](https://www.codefactor.io/repository/github/iuriyg/job4j_design/badge)](https://www.codefactor.io/repository/github/iuriyg/job4j_design)
 [![codecov](https://codecov.io/gh/IuriyG/job4j_design/branch/master/graph/badge.svg)](https://codecov.io/gh/IuriyG/job4j_design)
 
 # Уровень ["Junior".](https://job4j.ru/courses/java_with_zero_to_job.html)

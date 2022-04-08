@@ -1,4 +1,4 @@
-# используем язык java. Travis CI поддерживает другие языки тоже.
+# Используем язык java. Travis CI поддерживает другие языки тоже.
 language: java
 jdk:
   - openjdk14
@@ -20,6 +20,3 @@ notifications:
     on_failure: always # default: always
 
     # ключ с сайта https://codecov.io
-    env:
-    global:
-      - CODECOV_TOKEN="325ca0c3-d1c5-4aaf-b6d6-e0901aa82fcd"

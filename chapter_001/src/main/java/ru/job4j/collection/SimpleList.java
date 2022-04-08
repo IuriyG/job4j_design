@@ -61,7 +61,7 @@ public class SimpleList<E> implements Iterable<E> {
     }
 
     /**
-     * Метод проверяет находится ли значение index в границах добавленных элементов.
+     * Метод проверяет, находится ли значение index в границах добавленных элементов.
      *
      * @param index Индекс.
      */
@@ -84,6 +84,7 @@ public class SimpleList<E> implements Iterable<E> {
             /**
              * Метод проверяет есть ли следующий элемент.
              * Реализовано fail-fast поведение.
+             *
              * @return Возвращает true если есть и false если нет.
              */
             @Override
@@ -96,6 +97,7 @@ public class SimpleList<E> implements Iterable<E> {
 
             /**
              * Метод возвращает первый элемент.
+             *
              * @return Элемент.
              */
             @Override
