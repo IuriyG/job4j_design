@@ -28,7 +28,7 @@ public class Tree<E> implements SimpleTree<E> {
      * Метод осуществляет поиск-сравнение элементов по условию предиката.
      *
      * @param condition Входящий предикат.
-     * @return Если элемент найден или соответствует предикату, возвращает элемент или true? иначе - false.
+     * @return Если элемент найден или соответствует предикату, возвращает элемент или true, иначе - false.
      */
     private Optional<Node<E>> findByPredicate(Predicate<Node<E>> condition) {
         Optional<Node<E>> rsl = Optional.empty();
@@ -51,7 +51,7 @@ public class Tree<E> implements SimpleTree<E> {
      * @return Если элементов 2 возвращает true, иначе false.
      */
     public boolean isBinary() {
-        return findByPredicate(el -> el.children.size() == 2).isPresent();
+        return findByPredicate(el -> el.children.size() > 2).isEmpty();
 
     }
 
