@@ -78,7 +78,7 @@ public class Generics {
      * <b>Lower bounded wildcard.</b>
      * Ограниченный снизу wildcard выражается с помощью wildcard символа "?",
      * за которым следует ключевое слово super после которого указывается нижняя граница - <? super A>.
-     * В нашем случае, вместо <Predator> записывается конструкция <? extends Tiger>.
+     * В нашем случае, вместо <Predator> записывается конструкция <? super Tiger>.
      *
      * @param list Каждый элемент списка.
      */

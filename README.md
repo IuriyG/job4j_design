@@ -1,6 +1,9 @@
 [![Build Status](https://travis-ci.org/IuriyG/job4j_design.svg?branch=master)](https://travis-ci.org/IuriyG/job4j_design)
+![GitHub language count](https://img.shields.io/github/languages/count/IuriyG/job4j_design)
 [![jdk14](https://img.shields.io/badge/JDK-14-blue.svg)](http://jdk.java.net/14/)
-![GitHub top language](https://img.shields.io/github/languages/top/IuriyG/job4j_design?color=success)
+![GitHub top language](https://img.shields.io/github/languages/top/IuriyG/job4j_design)
+![Lines of code](https://img.shields.io/tokei/lines/github/IuriyG/job4j_design)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/IuriyG/job4j_design)
 [![CodeFactor](https://www.codefactor.io/repository/github/iuriyg/job4j_design/badge)](https://www.codefactor.io/repository/github/iuriyg/job4j_design)
 [![codecov](https://codecov.io/gh/IuriyG/job4j_design/branch/master/graph/badge.svg)](https://codecov.io/gh/IuriyG/job4j_design)
 
