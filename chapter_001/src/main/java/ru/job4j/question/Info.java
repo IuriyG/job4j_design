@@ -5,7 +5,15 @@ package ru.job4j.question;
  * @since 10.05.2022
  */
 public class Info {
+    private final int changed;
+    private final int deleted;
     private final int added;
+
+    public Info(int added, int changed, int deleted) {
+        this.added = added;
+        this.changed = changed;
+        this.deleted = deleted;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,22 +45,6 @@ public class Info {
 
     @Override
     public String toString() {
-        return "Info{"
-                + "added="
-                + added
-                + ", changed="
-                + changed
-                + ", deleted="
-                + deleted
-                + '}';
-    }
-
-    private final int changed;
-    private final int deleted;
-
-    public Info(int added, int changed, int deleted) {
-        this.added = added;
-        this.changed = changed;
-        this.deleted = deleted;
+        return "Info{" + "added=" + added + ", changed=" + changed + ", deleted=" + deleted + '}';
     }
 }

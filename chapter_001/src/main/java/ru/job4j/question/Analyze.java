@@ -31,9 +31,7 @@ public class Analyze {
                 count++;
             }
         }
-        Info last = new Info(actual.size() - previous.size() + count, change, count);
-        return last;
+        int deleted = actual.size() - previous.size() + count;
+        return new Info(deleted, change, count);
     }
 }
-
-

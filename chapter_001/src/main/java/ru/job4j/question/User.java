@@ -7,6 +7,14 @@ import java.util.Objects;
  * @since 10.05.2022
  */
 public class User {
+    private final int id;
+    private final String name;
+
+    public User(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -48,13 +56,5 @@ public class User {
 
     public String getName() {
         return name;
-    }
-
-    private final int id;
-    private final String name;
-
-    public User(int id, String name) {
-        this.id = id;
-        this.name = name;
     }
 }
