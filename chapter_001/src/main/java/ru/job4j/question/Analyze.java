@@ -1,7 +1,8 @@
 package ru.job4j.question;
 
-import java.util.Objects;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -9,7 +10,7 @@ import java.util.Set;
  */
 public class Analyze {
     /**
-     * Метод считает:
+     * Метод считает (за линейное время):
      * сколько добавлено новых пользователей;
      * сколько изменено пользователей;
      * сколько удалено пользователей.
@@ -20,16 +21,14 @@ public class Analyze {
      */
     public static Info diff(Set<User> previous, Set<User> current) {
         int change = 0, count = 0;
+        Map<Integer, String> actual = current.stream().collect(Collectors.toMap(User::getId, User::getName));
         for (User user : previous) {
-            for (User user1 : current) {
-                if (user.getId() == user1.getId() && !Objects.equals(user.getName(), user1.getName())) {
-                    change++;
-                }
-                if (user.getId() == user1.getId()) {
-                    count++;
-                }
+            if (actual.containsKey(user.getId()) && !actual.containsValue(user.getName())) {
+                change++;
+            } else if (!actual.containsKey(user.getId())) {
+                count++;
             }
         }
-        return new Info(current.size() - count, change, previous.size() - count);
+        return new Info(actual.size() - previous.size() + count, change, count);
     }
 }

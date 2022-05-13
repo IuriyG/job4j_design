@@ -11,7 +11,6 @@ import static org.junit.Assert.assertEquals;
  * @since 10.05.2022
  */
 public class AnalyzeTest {
-
     @Test
     public void whenNotChanged() {
         User u1 = new User(1, "A");
@@ -118,12 +117,13 @@ public class AnalyzeTest {
     }
 
     @Test
-    public void whenTwoAddedAndTowDeleted() {
+    public void whenTwoAddedAndThreeDeleted() {
         User u1 = new User(1, "A");
         User u2 = new User(2, "B");
-        Set<User> previous = Set.of(u1, u2);
+        User u5 = new User(5, "E");
+        Set<User> previous = Set.of(u1, u2, u5);
         Set<User> current = Set.of(new User(3, "C"), new User(4, "D"));
-        assertEquals(Analyze.diff(previous, current), (new Info(2, 0, 2)));
+        assertEquals(Analyze.diff(previous, current), (new Info(2, 0, 3)));
     }
 
     @Test
