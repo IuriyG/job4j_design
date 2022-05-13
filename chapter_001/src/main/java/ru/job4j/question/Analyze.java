@@ -21,7 +21,9 @@ public class Analyze {
      */
     public static Info diff(Set<User> previous, Set<User> current) {
         int change = 0, count = 0;
-        Map<Integer, String> actual = current.stream().collect(Collectors.toMap(User::getId, User::getName));
+        Map<Integer, String> actual = current.stream()
+                .collect(Collectors
+                        .toMap(User::getId, User::getName));
         for (User user : previous) {
             if (actual.containsKey(user.getId()) && !actual.containsValue(user.getName())) {
                 change++;
@@ -29,6 +31,9 @@ public class Analyze {
                 count++;
             }
         }
-        return new Info(actual.size() - previous.size() + count, change, count);
+        Info last = new Info(actual.size() - previous.size() + count, change, count);
+        return last;
     }
 }
+
+
