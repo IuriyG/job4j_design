@@ -1,6 +1,7 @@
 package io;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -25,8 +26,8 @@ public class ResultFile {
                 }
                 out.write(System.lineSeparator().getBytes());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }
