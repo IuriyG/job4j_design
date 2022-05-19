@@ -4,9 +4,7 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -26,9 +24,9 @@ public class SimpleSetTest {
         simpleSet.add(null);
 
         Iterator<String> it = simpleSet.iterator();
-        assertThat(it.next(), is("Omaha"));
-        assertThat(it.next(), is(nullValue()));
-        assertThat(it.next(), is("Tacoma"));
-        assertThat(it.next(), is("Maple V."));
+        assertEquals(it.next(), ("Omaha"));
+        assertEquals(it.next(), (null));
+        assertEquals(it.next(), ("Tacoma"));
+        assertEquals(it.next(), ("Maple V."));
     }
 }
