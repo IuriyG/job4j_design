@@ -1,7 +1,12 @@
 package ru.job4j.io;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -16,13 +21,17 @@ public class EvenNumberFile {
      * @param args Входящий аргумент.
      */
     public static void main(String[] args) {
+
         try (FileInputStream in = new FileInputStream("input.txt")) {
-            int read;
-            while ((read = in.read()) != -1) {
-                if (read % 2 == 0) {
-                    System.out.println((char) read);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            List<Integer> list = new ArrayList<>();
+            String read;
+            while ((read = br.readLine()) != null) {
+                if (Integer.parseInt(read) % 2 == 0) {
+                    list.add(Integer.parseInt(read));
                 }
             }
+            System.out.println(list);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
