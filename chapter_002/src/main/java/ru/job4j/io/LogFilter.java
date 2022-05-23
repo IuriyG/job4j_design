@@ -41,17 +41,19 @@ public class LogFilter {
     }
 
     /**
-     * Метод проверяет есть ли символ '404' в строке.
+     * Метод проверяет есть ли значение '404' в строке.
      *
      * @param file Входящий аргумент.
      * @return Если есть возвращает true или false.
      */
     public boolean has404(String file) {
+        boolean rsl = false;
         for (String s : file.split(" ")) {
             if (s.matches("404")) {
-                return true;
+                rsl = true;
+                break;
             }
         }
-        return false;
+        return rsl;
     }
 }
