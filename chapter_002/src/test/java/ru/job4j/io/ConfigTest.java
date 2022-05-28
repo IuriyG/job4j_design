@@ -2,6 +2,9 @@ package ru.job4j.io;
 
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -23,35 +26,35 @@ public class ConfigTest {
         String path = "./data/pair_with_comment.properties";
         Config config = new Config(path);
         config.load();
-        assertEquals(config.value("name"), "James Gosling");
+        assertThat(config.value("#hibernate.dialect"), is(nullValue()));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void whenValueEmptyWithComment() {
         String path = "./data/value_empty_comment.properties";
         Config config = new Config(path);
         config.load();
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void whenKeyIsEmpty() {
         String path = "./data/key_empty.properties";
         Config config = new Config(path);
         config.load();
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void whenNoSplitSymbol() {
         String path = "./data/empty.properties";
         Config config = new Config(path);
         config.load();
     }
 
-   @Test
+    @Test
     public void whenManySplitSymbols() {
         String path = "./data/several_symbols.properties";
         Config config = new Config(path);
         config.load();
-       assertEquals(config.value("name"), "author=1=James Gosling");
-   }
+        assertEquals(config.value("name"), "author=1=James Gosling");
+    }
 }

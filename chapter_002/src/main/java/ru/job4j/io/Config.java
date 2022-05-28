@@ -32,7 +32,6 @@ public class Config {
                 String value = keyValuePair[1];
                 if (value.isEmpty() || key.isEmpty()) {
                     System.out.println("Файл не соответствует условиям шаблона!");
-                    throw new IllegalArgumentException();
                 }
                 values.put(key, value);
             });
