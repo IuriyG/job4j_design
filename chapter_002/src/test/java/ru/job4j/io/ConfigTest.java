@@ -26,21 +26,21 @@ public class ConfigTest {
         assertEquals(config.value("name"), "James Gosling");
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void whenValueEmptyWithComment() {
         String path = "./data/value_empty_comment.properties";
         Config config = new Config(path);
         config.load();
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void whenKeyIsEmpty() {
         String path = "./data/key_empty.properties";
         Config config = new Config(path);
         config.load();
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void whenNoSplitSymbol() {
         String path = "./data/empty.properties";
         Config config = new Config(path);

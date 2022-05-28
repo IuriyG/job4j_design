@@ -21,10 +21,7 @@ public class Config {
     }
 
     public static void main(String[] args) {
-//        System.out.println(new Config("app.properties"));
-        Config config = new Config("app.properties");
-        config.load();
-        System.out.println(config.values);
+        System.out.println(new Config("app.properties"));
     }
 
     public void load() {
@@ -33,12 +30,9 @@ public class Config {
                 String[] keyValuePair = s.split("=", 2);
                 String key = keyValuePair[0];
                 String value = keyValuePair[1];
-                try {
-                    if (value.isEmpty() || key.isEmpty()) {
-                        throw new IllegalArgumentException();
-                    }
-                } catch (IllegalArgumentException e) {
+                if (value.isEmpty() || key.isEmpty()) {
                     System.out.println("Файл не соответствует условиям шаблона!");
+                    throw new IllegalArgumentException();
                 }
                 values.put(key, value);
             });
