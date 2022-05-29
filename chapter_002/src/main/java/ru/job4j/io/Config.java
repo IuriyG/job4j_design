@@ -26,7 +26,7 @@ public class Config {
 
     public void load() {
         try (BufferedReader br = new BufferedReader(new FileReader(this.path))) {
-            br.lines().filter(s -> s.contains("=")).forEach(s -> {
+            br.lines().filter(s -> !s.startsWith("#")).filter(s -> s.contains("=")).forEach(s -> {
                 String[] keyValuePair = s.split("=", 2);
                 String key = keyValuePair[0];
                 String value = keyValuePair[1];
