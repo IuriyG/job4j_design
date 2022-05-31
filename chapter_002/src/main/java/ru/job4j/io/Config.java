@@ -15,11 +15,11 @@ import java.util.StringJoiner;
  */
 public class Config {
     /**
-     * Файл.
+     * Поле класса для файла.
      */
     private final String path;
     /**
-     * Коллекция значений.
+     * Поле класса для коллекций значений.
      */
     private final Map<String, String> values = new HashMap<>();
 
