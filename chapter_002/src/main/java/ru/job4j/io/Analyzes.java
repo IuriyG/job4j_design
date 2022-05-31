@@ -7,7 +7,6 @@ import java.io.*;
  * @since 31.05.2022
  */
 public class Analyzes {
-
     public static void main(String[] args) {
         try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
             out.println("15:01:30;15:02:32");
