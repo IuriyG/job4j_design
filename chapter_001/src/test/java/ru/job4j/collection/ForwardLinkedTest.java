@@ -6,8 +6,7 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertSame;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -34,9 +33,9 @@ public class ForwardLinkedTest {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
         linked.add(1);
         linked.add(2);
-        assertThat(linked.deleteFirst(), is(1));
+        assertSame(linked.deleteFirst(), 1);
         Iterator<Integer> it = linked.iterator();
-        assertThat(it.next(), is(2));
+        assertSame(it.next(), 2);
     }
 
     @Test
@@ -45,8 +44,8 @@ public class ForwardLinkedTest {
         linked.add(1);
         linked.add(2);
         Iterator<Integer> it = linked.iterator();
-        assertThat(it.next(), is(1));
-        assertThat(it.next(), is(2));
+        assertSame(it.next(), 1);
+        assertSame(it.next(), 2);
     }
 
     @Test
@@ -56,8 +55,8 @@ public class ForwardLinkedTest {
         linked.add(2);
         linked.revert();
         Iterator<Integer> it = linked.iterator();
-        assertThat(it.next(), is(2));
-        assertThat(it.next(), is(1));
+        assertSame(it.next(), 2);
+        assertSame(it.next(), 1);
     }
 
     @Test
@@ -69,10 +68,10 @@ public class ForwardLinkedTest {
         linked.add(4);
         linked.revert();
         Iterator<Integer> it = linked.iterator();
-        assertThat(it.next(), is(4));
-        assertThat(it.next(), is(3));
-        assertThat(it.next(), is(2));
-        assertThat(it.next(), is(1));
+        assertSame(it.next(), 4);
+        assertSame(it.next(), 3);
+        assertSame(it.next(), 2);
+        assertSame(it.next(), 1);
     }
 
     @Test
