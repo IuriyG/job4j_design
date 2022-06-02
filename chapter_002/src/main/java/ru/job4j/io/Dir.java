@@ -8,7 +8,6 @@ import java.util.Objects;
  * @since 02.06.2022
  */
 public class Dir {
-
     public static void main(String[] args) {
         File file = new File("c:\\projects");
         if (!file.exists()) {
@@ -16,8 +15,7 @@ public class Dir {
         }
         for (File subfile : Objects.requireNonNull(file.listFiles())) {
             if (subfile.isFile()) {
-                System.out.printf("Name: %s", subfile.getName());
-                System.out.printf(" Size: %s%n", subfile.length());
+                System.out.printf("Name: %s Size: %d%n", subfile.getName(), subfile.length());
             }
         }
     }
