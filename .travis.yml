@@ -3,17 +3,18 @@ language: java
 jdk:
   - openjdk18
 
-# после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
-# Здесь используется сторонни сервис https://codecov.io/
+# После выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo.
+# Здесь используется сторонни сервис https://codecov.io/.
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-# Отправлять уведомление на почту IuriyG@protonmail.com если сборка упала
+  # Определяем операционную систему.
+  os: windows
+
+# Отправлять уведомление на почту IuriyG@protonmail.com.
 notifications:
   email:
     recipients:
       -IuriyG@protonmail.com
     on_success: never # default: change
     on_failure: always # on_error: always
-
-    # ключ с сайта https://codecov.io
