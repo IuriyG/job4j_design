@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertSame;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -17,7 +16,7 @@ public class SimpleStackTest {
     public void whenPushThenPoll() {
         SimpleStack<Integer> stack = new SimpleStack<>();
         stack.push(1);
-        assertThat(stack.pop(), is(1));
+        assertSame(stack.pop(), 1);
     }
 
     @Test
@@ -26,7 +25,7 @@ public class SimpleStackTest {
         stack.push(1);
         stack.pop();
         stack.push(2);
-        assertThat(stack.pop(), is(2));
+        assertSame(stack.pop(), 2);
     }
 
     @Test
@@ -35,13 +34,13 @@ public class SimpleStackTest {
         stack.push(1);
         stack.push(2);
         stack.pop();
-        assertThat(stack.pop(), is(1));
+        assertSame(stack.pop(), 1);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void whenPoll() {
         SimpleStack<Integer> stack = new SimpleStack<>();
         stack.pop();
-        assertThat(stack.pop(), is(1));
+        assertSame(stack.pop(), 1);
     }
 }
