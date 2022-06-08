@@ -63,7 +63,7 @@ public class FileProperty {
             return false;
         }
         FileProperty that = (FileProperty) o;
-        return size != that.size && Objects.equals(name, that.name);
+        return size == that.size && Objects.equals(name, that.name);
     }
 
     /**

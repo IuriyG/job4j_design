@@ -33,6 +33,11 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     }
 
     public List<Path> getDuplicates() {
-        return duplicates.entrySet().stream().filter(fl -> fl.getValue().size() > 1).flatMap(el -> el.getValue().stream()).collect(Collectors.toList());
+        return duplicates.entrySet()
+                .stream()
+                .filter(fl -> fl.getValue()
+                        .size() > 1).flatMap(el -> el.getValue()
+                        .stream())
+                .collect(Collectors.toList());
     }
 }
