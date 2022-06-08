@@ -28,6 +28,17 @@ public class FileProperty {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "FileProperty{"
+                + "size="
+                + size
+                + ", name='"
+                + name
+                + '\''
+                + '}';
+    }
+
     /**
      * Геттер.
      *
