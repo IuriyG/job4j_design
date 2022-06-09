@@ -40,15 +40,6 @@ public class FileProperty {
     }
 
     /**
-     * Геттер.
-     *
-     * @return Возвращает значение поля.
-     */
-    public long getSize() {
-        return size;
-    }
-
-    /**
      * Переопределенный метод.
      *
      * @param o Входящий аргумент.
@@ -74,14 +65,5 @@ public class FileProperty {
     @Override
     public int hashCode() {
         return Objects.hash(size, name);
-    }
-
-    /**
-     * Геттер.
-     *
-     * @return Возвращает значение поля.
-     */
-    public String getName() {
-        return name;
     }
 }
