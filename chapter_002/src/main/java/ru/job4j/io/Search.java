@@ -13,11 +13,9 @@ import java.util.function.Predicate;
  * @since 04.06.2022
  */
 public class Search {
-
     public static void main(String[] args) throws IOException {
-        validateFiles(new File("c:/projects/job4j_design"), ".txt");
-        System.out.println();
         Path start = Paths.get("c://projects//job4j_design");
+        validateFiles(new String[]{String.valueOf(start), ".txt"});
         search(start, p -> p.toFile().getName().endsWith(".txt")).forEach(System.out::println);
     }
 
@@ -27,17 +25,16 @@ public class Search {
         return searcher.getPaths();
     }
 
-    public static void validateFiles(File folder, String extension) {
-        if (!folder.exists()) {
-            throw new IllegalArgumentException("Папка не существует!");
-        }
-        File[] files = folder.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                if (file.getName().endsWith(extension)) {
-                    System.out.println(file);
-                }
+    public static void validateFiles(String[] args) {
+        if (args.length == 2) {
+            if (!new File(args[0]).isDirectory()) {
+                throw new IllegalArgumentException("Указан не верно формат директории!");
             }
+            if (!args[1].startsWith(".")) {
+                throw new IllegalArgumentException("Расширение должно начинаться с символа - точка!");
+            }
+        } else {
+            throw new IllegalArgumentException("Требуется два аргумента!");
         }
     }
 }
