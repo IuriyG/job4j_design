@@ -4,10 +4,17 @@ import java.io.File;
 import java.util.Objects;
 
 /**
+ * Класс выводит в консоль имена файлов и размер из заданного каталога.
+ *
  * @author Iuriy Gaydarzhi.
  * @since 02.06.2022
  */
 public class Dir {
+    /**
+     * Основной класс.
+     *
+     * @param args Входящий аргумент.
+     */
     public static void main(String[] args) {
         File file = new File("c:\\projects");
         if (!file.exists()) {
