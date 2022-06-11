@@ -26,15 +26,14 @@ public class Search {
     }
 
     public static void validateFiles(String[] args) {
-        if (args.length == 2) {
-            if (!new File(args[0]).isDirectory()) {
-                throw new IllegalArgumentException("Указан не верно формат директории!");
-            }
-            if (!args[1].startsWith(".")) {
-                throw new IllegalArgumentException("Расширение должно начинаться с символа - точка!");
-            }
-        } else {
+        if (args.length != 2) {
             throw new IllegalArgumentException("Требуется два аргумента!");
+        }
+        if (!new File(args[0]).isDirectory()) {
+            throw new IllegalArgumentException("Указан не верно формат директории!");
+        }
+        if (!args[1].startsWith(".")) {
+            throw new IllegalArgumentException("Расширение должно начинаться с символа - \".\"!");
         }
     }
 }
