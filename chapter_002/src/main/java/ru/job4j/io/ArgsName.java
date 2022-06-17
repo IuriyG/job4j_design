@@ -27,27 +27,25 @@ public class ArgsName {
         System.out.println(zip.get("out"));
     }
 
-    private void validateData(String[] args) {
-        for (String arg : args) {
-            String[] keyValuePair = arg.split("=", 2);
-            if (!keyValuePair[0].startsWith("-")) {
-                throw new IllegalArgumentException("Отсутствует первый символ ключа - \"-\"");
-            }
-            if (!arg.contains("=")) {
-                throw new IllegalArgumentException("Отсутствует разделяющий символ - \"=\"!");
-            }
-            if (keyValuePair[0].equals("-")) {
-                throw new IllegalArgumentException("Присутствует только первый символ ключа!");
-            }
-            if (keyValuePair[1].isEmpty()) {
-                throw new IllegalArgumentException("Отсутствует значение ключа!");
-            }
+    private void validateData(String arg) {
+        if (!arg.startsWith("-")) {
+            throw new IllegalArgumentException("Отсутствует первый символ ключа - \"-\"");
+        }
+        if (!arg.contains("=")) {
+            throw new IllegalArgumentException("Отсутствует разделяющий символ - \"=\"!");
+        }
+        if (arg.startsWith("-=")) {
+            throw new IllegalArgumentException("Присутствует только первый символ ключа!");
+        }
+        String[] keyValuePair = arg.split("=", 2);
+        if (keyValuePair[1].isEmpty()) {
+            throw new IllegalArgumentException("Отсутствует значение ключа!");
         }
     }
 
     private void parse(String[] args) {
-        validateData(args);
         for (String arg : args) {
+            validateData(arg);
             String[] keyValuePair = arg.split("=", 2);
             String key = keyValuePair[0].substring(1);
             String value = keyValuePair[1];
