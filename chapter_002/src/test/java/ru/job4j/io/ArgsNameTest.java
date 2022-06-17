@@ -9,7 +9,6 @@ import static org.junit.Assert.assertEquals;
  * @since 15.06.2022
  */
 public class ArgsNameTest {
-
     @Test
     public void whenGetFirst() {
         ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});

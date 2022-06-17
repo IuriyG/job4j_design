@@ -11,6 +11,9 @@ public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
 
     public static ArgsName of(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Входящий массив пуст!");
+        }
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;
@@ -25,33 +28,21 @@ public class ArgsName {
     }
 
     private void validateData(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("Входящий массив пуст!");
-        }
         for (String arg : args) {
+            String[] keyValuePair = arg.split("=", 2);
+            if (!keyValuePair[0].startsWith("-")) {
+                throw new IllegalArgumentException("Отсутствует первый символ ключа - \"-\"");
+            }
             if (!arg.contains("=")) {
                 throw new IllegalArgumentException("Отсутствует разделяющий символ - \"=\"!");
             }
-            String[] keyValuePair = arg.split("=", 2);
-            String key = keyValuePair[0];
-            String value = keyValuePair[1];
-            if (!key.startsWith("-")) {
-                throw new IllegalArgumentException("Отсутствует первый символ ключа - \"-\"");
-            }
-            if (key.equals("-")) {
+            if (keyValuePair[0].equals("-")) {
                 throw new IllegalArgumentException("Присутствует только первый символ ключа!");
             }
-            if (value.isEmpty()) {
+            if (keyValuePair[1].isEmpty()) {
                 throw new IllegalArgumentException("Отсутствует значение ключа!");
             }
         }
-    }
-
-    public String get(String key) {
-        if (!values.containsKey(key)) {
-            throw new IllegalArgumentException("Отсутствует ключ!");
-        }
-        return values.get(key);
     }
 
     private void parse(String[] args) {
@@ -62,5 +53,12 @@ public class ArgsName {
             String value = keyValuePair[1];
             values.put(key, value);
         }
+    }
+
+    public String get(String key) {
+        if (!values.containsKey(key)) {
+            throw new IllegalArgumentException("Отсутствует ключ!");
+        }
+        return values.get(key);
     }
 }
