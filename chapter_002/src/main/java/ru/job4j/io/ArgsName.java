@@ -4,12 +4,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Класс принимает массив аргументов, проводит валидацию, разбивает па пару: ключ и значение и добавляет в колляцию.1
+ *
  * @author Iuriy Gaydarzhi.
  * @since 15.06.2022
  */
 public class ArgsName {
+
+    /**
+     * Коллекция ключей.
+     */
     private final Map<String, String> values = new HashMap<>();
 
+    /**
+     * Метод проверяет пуст ли массив, и вызывает метод 'parse'.
+     *
+     * @param args Входящий аргументы.
+     * @return Результат метода 'parse'.
+     */
     public static ArgsName of(String[] args) {
         if (args.length == 0) {
             throw new IllegalArgumentException("Входящий массив пуст!");
@@ -19,6 +31,11 @@ public class ArgsName {
         return names;
     }
 
+    /**
+     * Основной метод.
+     *
+     * @param args Входящий аргументы.
+     */
     public static void main(String[] args) {
         ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
         System.out.println(jvm.get("Xmx"));
@@ -27,6 +44,15 @@ public class ArgsName {
         System.out.println(zip.get("out"));
     }
 
+    /**
+     * Метод проверяет аргументы:
+     * на наличие первого символа у ключа;
+     * на наличие разделяющего символа;
+     * на отсутствие ключа;
+     * на отсутствие значение у ключа.
+     *
+     * @param arg Входящие аргументы.
+     */
     private void validateData(String arg) {
         if (!arg.startsWith("-")) {
             throw new IllegalArgumentException("Отсутствует первый символ ключа - \"-\"");
@@ -43,6 +69,11 @@ public class ArgsName {
         }
     }
 
+    /**
+     * Метод преобразует из входящих данных пару: ключ и значение и добавляет их в коллекцию.
+     *
+     * @param args Входящие аргументы.
+     */
     private void parse(String[] args) {
         for (String arg : args) {
             validateData(arg);
@@ -53,6 +84,12 @@ public class ArgsName {
         }
     }
 
+    /**
+     * Метод проверяет наличие ключа в коллекции, если ключа нет, выбрасывает исключение и уведомляет или ключ.
+     *
+     * @param key Входящий аргумент, 'ключ'.
+     * @return Исключение или ключ.
+     */
     public String get(String key) {
         if (!values.containsKey(key)) {
             throw new IllegalArgumentException("Отсутствует ключ!");
