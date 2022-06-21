@@ -13,18 +13,38 @@ import java.util.zip.ZipOutputStream;
  * @since 20.06.2022
  */
 public class Zip {
+    private static final String DIR = "d";
+    private static final String EXC = "e";
+    private static final String OUT = "o";
 
     public static void main(String[] args) throws IOException {
+        if (args.length != 3) {
+            throw new IllegalArgumentException("Аргументов должно быть три!");
+        }
         Zip zip = new Zip();
         zip.packSingleFile(new File("./pom.xml"), new File("./pom.zip"));
         ArgsName argsName = ArgsName.of(args);
-        String s = argsName.get("e");
-        Predicate<Path> predicate = path -> !path.toFile().getName().endsWith(s);
-        String s1 = argsName.get("d");
-        Path source = Paths.get(s1);
+        String exclude = argsName.get(EXC);
+        String directory = argsName.get(DIR);
+        Path output = Paths.get(argsName.get(OUT));
+        zip.validateArgs(argsName);
+        Predicate<Path> predicate = path -> !path.toFile().getName().endsWith(exclude);
+        Path source = Paths.get(directory);
         List<Path> list = Search.search(source, predicate);
-        Path target = Paths.get(argsName.get("o"));
-        zip.packFiles(list, target);
+        zip.packFiles(list, output);
+    }
+
+    private void validateArgs(ArgsName args) {
+        Path in = Paths.get(args.get(DIR));
+        if (!in.toFile().isDirectory()) {
+            throw new IllegalArgumentException("Аргумент 'd' не является директорией!");
+        }
+        if (!args.get(EXC).startsWith(".")) {
+            throw new IllegalArgumentException("Аргумент 'e' должен начинаться с точки, затем расширение!");
+        }
+        if (!args.get(OUT).contains(".zip")) {
+            throw new IllegalArgumentException("Аргумент 'o' должен состоять из названия и расширения - '.zip'!");
+        }
     }
 
     public void packFiles(List<Path> sources, Path target) {
