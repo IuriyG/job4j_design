@@ -34,6 +34,7 @@ public class ConsoleChat {
     }
 
     public void run() throws IOException {
+        List<String> randomSentence = readPhrases();
         String you = "Вы:";
         String bot = "Бот:";
         String talk = "Пообщаемся?";
@@ -68,9 +69,9 @@ public class ConsoleChat {
             }
             System.out.println(bot);
             list.add(bot);
-            String randomSentence = botsSentence();
-            System.out.println(randomSentence);
-            this.list.add(randomSentence);
+            double random = Math.random() * 50;
+            System.out.println(randomSentence.get((int) random));
+            this.list.add(randomSentence.get((int) random));
         } while (true);
         saveLog(this.list);
     }
@@ -91,10 +92,5 @@ public class ConsoleChat {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private String botsSentence() {
-        double random = Math.random() * 50;
-        return readPhrases().get((int) random);
     }
 }
