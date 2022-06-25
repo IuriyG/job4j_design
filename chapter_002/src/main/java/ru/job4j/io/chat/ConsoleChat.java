@@ -13,6 +13,7 @@ public class ConsoleChat {
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
+    private final List<String> list = new ArrayList<>();
     /**
      * Лог диалога между пользователем и ботом.
      */
@@ -33,46 +34,45 @@ public class ConsoleChat {
     }
 
     public void run() throws IOException {
-        List<String> list = new ArrayList<>();
         String you = "Вы:";
         String bot = "Бот:";
         String talk = "Пообщаемся?";
         String answer = "Хорошо, не буду надоедать!";
         String bye = "Всего доброго, Бро)!";
+        String word;
         boolean execute = true;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println(talk);
         list.add(talk);
         do {
             System.out.println(you);
-            list.add(you);
-            String word = br.readLine();
-            list.add(word);
-            if (word.equals(STOP)) {
+            word = br.readLine();
+            this.list.add(you + System.lineSeparator() + word);
+            if (STOP.equals(word)) {
                 System.out.println(bot);
                 list.add(bot);
                 System.out.println(answer);
                 list.add(answer);
                 while (execute) {
                     word = br.readLine();
-                    list.add(word);
-                    if (word.equals(CONTINUE)) {
+                    this.list.add(word);
+                    if (CONTINUE.equals(word)) {
                         execute = false;
                     }
                 }
                 execute = true;
-            } else if (word.equals(OUT)) {
+            } else if (OUT.equals(word)) {
                 System.out.println(bye);
                 list.add(bye);
                 break;
             }
             System.out.println(bot);
             list.add(bot);
-            double random = Math.random() * 50;
-            System.out.println(readPhrases().get((int) random));
-            list.add(readPhrases().get((int) random));
+            String randomSentence = botsSentence();
+            System.out.println(randomSentence);
+            this.list.add(randomSentence);
         } while (true);
-        saveLog(list);
+        saveLog(this.list);
     }
 
     private List<String> readPhrases() {
@@ -91,5 +91,10 @@ public class ConsoleChat {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String botsSentence() {
+        double random = Math.random() * 50;
+        return readPhrases().get((int) random);
     }
 }
