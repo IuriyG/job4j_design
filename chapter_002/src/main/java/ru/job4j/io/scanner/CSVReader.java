@@ -39,7 +39,7 @@ public class CSVReader {
             temp.add(sc);
         }
         separateArgs(temp);
-        if (target.equals("stdout")) {
+        if ("stdout".equals(target)) {
             result.forEach(System.out::println);
         } else {
             resultLog(result);
@@ -60,14 +60,14 @@ public class CSVReader {
         if (!new File(this.file).getName().endsWith(".csv")) {
             throw new IllegalArgumentException("Аргумент 'path' указан не верно!");
         }
-        if (!this.delimiter.equals(";")) {
+        if (!";".equals(this.delimiter)) {
             throw new IllegalArgumentException("Аргумент 'delimiter' указан не верно!");
         }
-        if (!new File(this.target).getName().endsWith(".csv") && !this.target.equals("stdout")) {
+        if (!new File(this.target).getName().endsWith(".csv") && !"stdout".equals(this.target)) {
             throw new IllegalArgumentException("Аргумент 'out' указан не верно!" + System.lineSeparator()
                     + "Укажите верно конечный файл, или ключевое слово: 'stdout'!");
         }
-        if (toggle.length != 2) {
+        if (this.toggle.length != 2) {
             throw new IllegalArgumentException("Аргументов 'filter' должно быть два!");
         }
     }
