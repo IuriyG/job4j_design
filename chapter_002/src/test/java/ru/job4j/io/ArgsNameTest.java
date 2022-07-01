@@ -42,36 +42,36 @@ public class ArgsNameTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void whenWrongSomeArgument() {
-        ArgsName jvm = ArgsName.of(new String[]{"-encoding=UTF-8", "-Xmx="});
+        ArgsName.of(new String[]{"-encoding=UTF-8", "-Xmx="});
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void whenArrayIsEmpty() {
-        ArgsName jvm = ArgsName.of(new String[]{});
+        ArgsName.of(new String[]{});
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void whenKeyIsHyphen() {
-        ArgsName jvm = ArgsName.of(new String[]{"-=512"});
+        ArgsName.of(new String[]{"-=512"});
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void whenAbsentEqualSymbol() {
-        ArgsName jvm = ArgsName.of(new String[]{"-encodingUTF-8"});
+        ArgsName.of(new String[]{"-encodingUTF-8"});
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void whenAbsentHyphenSymbol() {
-        ArgsName jvm = ArgsName.of(new String[]{"encoding=UTF-8"});
+        ArgsName.of(new String[]{"encoding=UTF-8"});
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void whenAbsentKeyAndTwoEqualSymbol() {
-        ArgsName jvm = ArgsName.of(new String[]{"-==password"});
+        ArgsName.of(new String[]{"-==password"});
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void whenAbsentKeyAndValue() {
-        ArgsName jvm = ArgsName.of(new String[]{"-="});
+        ArgsName.of(new String[]{"-="});
     }
 }

@@ -65,11 +65,11 @@ public class ConsoleChat {
      */
     public void run() throws IOException {
         List<String> randomSentence = readPhrases();
-        String you = "Вы:";
-        String bot = "Бот:";
-        String talk = "Пообщаемся?";
-        String answer = "Хорошо, не буду надоедать!";
-        String bye = "Всего доброго, Бро)!";
+        var you = "Вы:";
+        var bot = "Бот:";
+        var talk = "Пообщаемся?";
+        var answer = "Хорошо, не буду надоедать!";
+        var bye = "Всего доброго, Бро)!";
         String word;
         boolean execute = true;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
