@@ -9,12 +9,24 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Класс считывает данные с файла с расширением '.csv'. И выводит в консоль или
+ * в другой файл с таким же расширением, в зависимости от входных аргументов.
+ *
  * @author Iuriy Gaydarzhi.
  * @since 29.06.2022
  */
 public class CSVReader {
+    /**
+     * Временный список, куда помещается данные, считанные из файла '.csv'.
+     */
     private final List<String> temp = new ArrayList<>();
+    /**
+     * Результирующий список, куда записываются результат работы методов.
+     */
     private final List<String> result = new ArrayList<>();
+    /**
+     * Разделитель.
+     */
     private String[] toggle;
     private String file;
     private String delimiter;
@@ -29,8 +41,7 @@ public class CSVReader {
         file = argsName.get("path");
         delimiter = argsName.get("delimiter");
         target = String.valueOf(Path.of(argsName.get("out")));
-        var fil = argsName.get("filter");
-        toggle = fil.split(",");
+        toggle = argsName.get("filter").split(",");
         validateKeys();
 
         Scanner scanner = new Scanner(new File(this.file));

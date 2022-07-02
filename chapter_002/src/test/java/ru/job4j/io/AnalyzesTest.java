@@ -6,8 +6,7 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -36,7 +35,7 @@ public class AnalyzesTest {
         StringBuilder rsl = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             rsl.append(in.readLine()).append(in.readLine());
-            assertThat(rsl.toString(), is("10:57:01;10:59:01;11:01:02;11:02:02;"));
+            assertEquals(rsl.toString(), "10:57:01;10:59:01;11:01:02;11:02:02;");
         }
     }
 
@@ -57,6 +56,6 @@ public class AnalyzesTest {
         try (BufferedReader read = new BufferedReader(new FileReader(target))) {
             rsl.append(read.readLine());
         }
-        assertThat(rsl.toString(), is("10:57:01;11:02:02;"));
+        assertEquals(rsl.toString(), "10:57:01;11:02:02;");
     }
 }

@@ -2,10 +2,8 @@ package ru.job4j.io;
 
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -26,7 +24,7 @@ public class ConfigTest {
         String path = "./data/pair_with_comment.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("#hibernate.password"), is(nullValue()));
+        assertNull(config.value("#hibernate.password"));
     }
 
     @Test(expected = IllegalArgumentException.class)
