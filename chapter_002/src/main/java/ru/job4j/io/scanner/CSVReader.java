@@ -70,7 +70,6 @@ public class CSVReader {
         target = String.valueOf(Path.of(argsName.get("out")));
         toggle = argsName.get("filter").split(",");
         validateKeys();
-
         Scanner scanner = new Scanner(new File(this.file));
         while (scanner.hasNext()) {
             String sc = scanner.nextLine();
