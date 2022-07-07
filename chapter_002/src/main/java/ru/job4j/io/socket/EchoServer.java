@@ -8,10 +8,26 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
+ * Класс имитирует работу бота.
+ *
  * @author Iuriy Gaydarzhi.
  * @since 06.07.2022
  */
 public class EchoServer {
+    /**
+     * Метод создает серверный сокет, затем клиентский.
+     * Пока сервер открыт принимает запросы.
+     * Принимает входной поток и отправляем через буферизированные потоки.
+     * Первым сообщением отправляется строка с кодом состояния.
+     * Если входящее сообщение содержит значение:
+     * <p>{@code "/?msg=Hello"},то отвечает: {@code Hello}.
+     * <p>{@code "/?msg=Exit"},то отвечает: {@code Good Bye!} и завершает работу программы.
+     * <p>На другие запросы отвечает: {@code What?}.
+     * Считывает все входящие строки и выводит их в консоль.
+     *
+     * @param args Водные данные.
+     * @throws IOException Исключение ввода-вывода.
+     */
     public static void main(String[] args) throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
