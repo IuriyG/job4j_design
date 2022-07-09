@@ -2,9 +2,10 @@ package ru.job4j.it;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import static org.hamcrest.core.Is.is;
+
 import static org.junit.Assert.*;
 
 public class EvenNumbersIteratorTest {
@@ -13,46 +14,46 @@ public class EvenNumbersIteratorTest {
 
     @Before
     public void setUp() {
-        it = new EvenNumbersIterator(new int[] {1, 2, 3, 4, 5, 6, 7});
+        it = new EvenNumbersIterator(new int[]{1, 2, 3, 4, 5, 6, 7});
     }
 
     @Test(expected = NoSuchElementException.class)
     public void shouldReturnEvenNumbersSequentially() {
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(2));
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(4));
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(6));
-        assertThat(it.hasNext(), is(false));
+        assertTrue(it.hasNext());
+        assertSame(it.next(), 2);
+        assertTrue(it.hasNext());
+        assertSame(it.next(), 4);
+        assertTrue(it.hasNext());
+        assertSame(it.next(), 6);
+        assertFalse(it.hasNext());
         it.next();
     }
 
     @Test
-    public void sequentialHasNextInvocationDoesntAffectRetrievalOrder() {
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(2));
-        assertThat(it.next(), is(4));
-        assertThat(it.next(), is(6));
+    public void sequentialHasNextInvocationDoesNtAffectRetrievalOrder() {
+        assertTrue(it.hasNext());
+        assertTrue(true);
+        assertSame(it.next(), 2);
+        assertSame(it.next(), 4);
+        assertSame(it.next(), 6);
     }
 
     @Test
-    public void  shouldReturnFalseIfNoAnyEvenNumbers() {
+    public void shouldReturnFalseIfNoAnyEvenNumbers() {
         it = new EvenNumbersIterator(new int[]{1});
-        assertThat(it.hasNext(), is(false));
+        assertFalse(it.hasNext());
     }
 
     @Test
     public void allNumbersAreEven() {
-        it = new EvenNumbersIterator(new int[] {2, 4, 6, 8});
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(2));
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(4));
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(6));
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.next(), is(8));
+        it = new EvenNumbersIterator(new int[]{2, 4, 6, 8});
+        assertTrue(it.hasNext());
+        assertSame(it.next(), 2);
+        assertTrue(it.hasNext());
+        assertSame(it.next(), 4);
+        assertTrue(it.hasNext());
+        assertSame(it.next(), 6);
+        assertTrue(it.hasNext());
+        assertSame(it.next(), 8);
     }
 }

@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class MatrixItTest {
     @Test
@@ -14,7 +13,7 @@ public class MatrixItTest {
                 {1}
         };
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.next(), is(1));
+        assertSame(it.next(), 1);
     }
 
     @Test
@@ -23,7 +22,7 @@ public class MatrixItTest {
                 {}, {1}
         };
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.next(), is(1));
+        assertSame(it.next(), 1);
     }
 
     @Test
@@ -32,7 +31,7 @@ public class MatrixItTest {
                 {}, {1}
         };
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
     }
 
     @Test
@@ -41,9 +40,9 @@ public class MatrixItTest {
                 {1}, {2, 3}
         };
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.next(), is(1));
-        assertThat(it.next(), is(2));
-        assertThat(it.next(), is(3));
+        assertSame(it.next(), 1);
+        assertSame(it.next(), 2);
+        assertSame(it.next(), 3);
     }
 
     @Test
@@ -52,8 +51,8 @@ public class MatrixItTest {
                 {1}, {}, {}, {}, {2}
         };
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.next(), is(1));
-        assertThat(it.next(), is(2));
+        assertSame(it.next(), 1);
+        assertSame(it.next(), 2);
     }
 
     @Test
@@ -62,7 +61,7 @@ public class MatrixItTest {
                 {}
         };
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.hasNext(), is(false));
+        assertFalse(it.hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -80,13 +79,13 @@ public class MatrixItTest {
                 {}, {1}
         };
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
     }
 
     @Test
     public void whenNoElements() {
         int[][] in = {{}, {}, {}};
         MatrixIt it = new MatrixIt(in);
-        assertThat(it.hasNext(), is(false));
+        assertFalse(it.hasNext());
     }
 }

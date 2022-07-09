@@ -3,8 +3,8 @@ package ru.job4j.generics.store;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
@@ -37,7 +37,7 @@ public class MemStoreTest {
      */
     @Test
     public void whenUseAdd() {
-        assertThat(memStore.findById("one"), is(user));
+        assertEquals(memStore.findById("one"), user);
     }
 
     /**
@@ -48,8 +48,8 @@ public class MemStoreTest {
         memStore.replace("two", user4);
         memStore.replace("one", user5);
         memStore.replace("six", user);
-        assertThat(memStore.findById("four"), is(user4));
-        assertThat(memStore.findById("five"), is(user5));
+        assertEquals(memStore.findById("four"), user4);
+        assertEquals(memStore.findById("five"), user5);
         assertNull(memStore.findById("six"));
     }
 
@@ -69,7 +69,7 @@ public class MemStoreTest {
      */
     @Test
     public void whenUseFindById() {
-        assertThat(memStore.findById("three"), is(user3));
+        assertEquals(memStore.findById("three"), user3);
         assertNull(memStore.findById("six"));
     }
 
@@ -78,7 +78,7 @@ public class MemStoreTest {
      */
     @Test
     public void whenUseSearchById() {
-        assertThat(memStore.searchIdByIndex("three"), is(2));
-        assertThat(memStore.searchIdByIndex("six"), is(-1));
+        assertEquals(memStore.searchIdByIndex("three"), 2);
+        assertEquals(memStore.searchIdByIndex("six"), -1);
     }
 }

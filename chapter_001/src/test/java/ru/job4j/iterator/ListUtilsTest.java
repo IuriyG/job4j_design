@@ -1,13 +1,12 @@
 package ru.job4j.iterator;
 
-import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -19,7 +18,7 @@ public class ListUtilsTest {
     public void whenAddBefore() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 3));
         ListUtils.addBefore(input, 1, 2);
-        assertThat(Arrays.asList(1, 2, 3), Is.is(input));
+        assertEquals(Arrays.asList(1, 2, 3), input);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -32,7 +31,7 @@ public class ListUtilsTest {
     public void whenAddAfter() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 4));
         ListUtils.addAfter(input, 1, 3);
-        assertThat(Arrays.asList(1, 2, 3, 4), Is.is(input));
+        assertEquals(Arrays.asList(1, 2, 3, 4), input);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -45,14 +44,14 @@ public class ListUtilsTest {
     public void whenRemoveIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         ListUtils.removeIf(input, e -> e > 2);
-        assertThat(Arrays.asList(1, 2), Is.is(input));
+        assertEquals(Arrays.asList(1, 2), input);
     }
 
     @Test
     public void whenReplaceIf() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         ListUtils.replaceIf(input, e -> e == 3, 99);
-        assertThat(Arrays.asList(1, 2, 99, 4, 5), Is.is(input));
+        assertEquals(Arrays.asList(1, 2, 99, 4, 5), input);
     }
 
     @Test
@@ -60,6 +59,6 @@ public class ListUtilsTest {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         List<Integer> output = new ArrayList<>(Arrays.asList(2, 4, 6));
         ListUtils.removeAll(input, output);
-        assertThat(Arrays.asList(1, 3, 5), Is.is(input));
+        assertEquals(Arrays.asList(1, 3, 5), input);
     }
 }

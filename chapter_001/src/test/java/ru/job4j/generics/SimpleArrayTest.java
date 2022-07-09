@@ -3,8 +3,7 @@ package ru.job4j.generics;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class SimpleArrayTest {
     private final int capacity = 10;
@@ -27,7 +26,7 @@ public class SimpleArrayTest {
     @Test
     public void whenUseSet() {
         array.set(3, 8);
-        assertThat(array.get(3), is(8));
+        assertEquals(array.get(3), 8);
     }
 
     /**
@@ -36,7 +35,7 @@ public class SimpleArrayTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenUseSetAndHaveIOOE() {
         array.set(10, 33);
-        assertThat(array.get(10), is(33));
+        assertEquals(array.get(10), 33);
     }
 
     /**
@@ -45,7 +44,7 @@ public class SimpleArrayTest {
     @Test
     public void whenUseAdd() {
         array.add(11);
-        assertThat(array.get(4), is(11));
+        assertEquals(array.get(4), 11);
     }
 
     /**
@@ -54,7 +53,7 @@ public class SimpleArrayTest {
     @Test
     public void whenUseRemove() {
         array.remove(1);
-        assertThat(array.get(1), is(9));
+        assertEquals(array.get(1), 9);
     }
 
     /**
@@ -63,7 +62,7 @@ public class SimpleArrayTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenUseRemoveAndHaveIOOE() {
         array.remove(10);
-        assertThat(array.get(1), is(2));
+        assertEquals(array.get(1), 2);
     }
 
     /**
@@ -71,7 +70,7 @@ public class SimpleArrayTest {
      */
     @Test
     public void whenUseGet() {
-        assertThat(9, is(array.get(2)));
+        assertEquals(9, array.get(2));
     }
 
     /**
@@ -79,6 +78,6 @@ public class SimpleArrayTest {
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenUseGetAndHaveIOOE() {
-        assertThat(2, is(array.get(10)));
+        assertEquals(2, array.get(10));
     }
 }

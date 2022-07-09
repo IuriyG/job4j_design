@@ -7,9 +7,6 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 /**
@@ -30,16 +27,16 @@ public class SimpleHashMapTest {
     @Test
     public void testInsert() {
         map.insert("bake", "Bro");
-        assertThat(map.get("bake"), is("Bro"));
+        assertSame(map.get("bake"), "Bro");
         map.insert("bake", "night");
-        assertThat(map.get("bake"), is("night"));
+        assertSame(map.get("bake"), "night");
     }
 
     @Test
     public void testGet() {
         map.insert("Luly", "BIO. Mate");
-        assertThat(map.get("luly"), is("BIO. Mate"));
-        assertThat(map.get("Bio Moon"), is(nullValue()));
+        assertSame(map.get("luly"), "BIO. Mate");
+        assertNull(map.get("Bio Moon"));
     }
 
     @Test
@@ -62,8 +59,8 @@ public class SimpleHashMapTest {
     @Test
     public void testIterator() {
         Iterator<String> it = map.iterator();
-        assertThat(it.next(), is("bl"));
-        assertThat(it.next(), is("lul"));
+        assertSame(it.next(), "bl");
+        assertSame(it.next(), "lul");
     }
 
     @Test(expected = ConcurrentModificationException.class)

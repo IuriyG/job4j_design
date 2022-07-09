@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -18,7 +17,7 @@ public class SimpleQueueTest {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.push(1);
         int rsl = queue.poll();
-        assertThat(rsl, is(1));
+        assertEquals(rsl, 1);
     }
 
     @Test
@@ -27,7 +26,7 @@ public class SimpleQueueTest {
         queue.push(1);
         queue.push(2);
         int rsl = queue.poll();
-        assertThat(rsl, is(1));
+        assertEquals(rsl, 1);
     }
 
     @Test
@@ -37,7 +36,7 @@ public class SimpleQueueTest {
         queue.poll();
         queue.push(2);
         int rsl = queue.poll();
-        assertThat(rsl, is(2));
+        assertEquals(rsl, 2);
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -45,13 +44,13 @@ public class SimpleQueueTest {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.poll();
     }
-    @Test
-    public void whenPushPushPollAndPush() {
-        SimpleQueue<Integer> queue = new SimpleQueue<>();
-        queue.push(1);
-        queue.push(2);
-        queue.poll();
-        queue.push(3);
-        assertThat(queue.poll(), is(2));
-    }
+//    @Test
+//    public void whenPushPushPollAndPush() {
+//        SimpleQueue<Integer> queue = new SimpleQueue<>();
+//        queue.push(1);
+//        queue.push(2);
+//        queue.poll();
+//        queue.push(3);
+//        assertSame(queue.poll(),2);
+//    }
 }

@@ -3,8 +3,7 @@ package ru.job4j.generics.store;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
@@ -36,7 +35,7 @@ public class UserStoreTest {
      */
     @Test
     public void testAdd() {
-        assertThat(memStore.findById("Jon"), is(user2));
+        assertEquals(memStore.findById("Jon"), user2);
     }
 
     /**
@@ -44,7 +43,7 @@ public class UserStoreTest {
      */
     @Test
     public void testFindById() {
-        assertThat(memStore.findById("Michele"), is(user3));
+        assertEquals(memStore.findById("Michele"), user3);
         assertNull(memStore.findById("none"));
     }
 
@@ -54,7 +53,7 @@ public class UserStoreTest {
     @Test
     public void testReplace() {
         memStore.replace("Jon", user5);
-        assertThat(memStore.findById("James"), is(user5));
+        assertEquals(memStore.findById("James"), user5);
     }
 
     /**

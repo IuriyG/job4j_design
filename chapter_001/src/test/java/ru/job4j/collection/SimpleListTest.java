@@ -7,8 +7,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertSame;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -28,17 +27,17 @@ public class SimpleListTest {
     @Test
     public void testAdd() {
         linked.add("fifth");
-        assertThat(linked.get(4), is("fifth"));
+        assertSame(linked.get(4), "fifth");
     }
 
     @Test
     public void testGet() {
-        assertThat(linked.get(2), is("third"));
+        assertSame(linked.get(2), "third");
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testCheckIndex() {
-        assertThat(linked.get(4), is("fourth"));
+        assertSame(linked.get(4), "fourth");
     }
 
     @Test(expected = ConcurrentModificationException.class)

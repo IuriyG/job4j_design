@@ -6,8 +6,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertSame;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -20,7 +19,7 @@ public class SimpleArrayTest {
         SimpleArray<String> array = new SimpleArray<>(1);
         array.add("first");
         String rsl = array.get(0);
-        assertThat(rsl, is("first"));
+        assertSame(rsl, "first");
     }
 
     @Test
@@ -28,7 +27,7 @@ public class SimpleArrayTest {
         SimpleArray<String> array = new SimpleArray<>(3);
         array.add("first");
         String rsl = array.iterator().next();
-        assertThat(rsl, is("first"));
+        assertSame(rsl, "first");
     }
 
     @Test(expected = IndexOutOfBoundsException.class)

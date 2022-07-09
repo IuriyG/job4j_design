@@ -7,8 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class FlatMapTest {
     @Test
@@ -18,9 +17,9 @@ public class FlatMapTest {
                 List.of(2, 3).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
-        assertThat(flat.next(), is(1));
-        assertThat(flat.next(), is(2));
-        assertThat(flat.next(), is(3));
+        assertSame(flat.next(), 1);
+        assertSame(flat.next(), 2);
+        assertSame(flat.next(), 3);
     }
 
     @Test
@@ -29,9 +28,9 @@ public class FlatMapTest {
                 List.of(1, 2, 3).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
-        assertThat(flat.next(), is(1));
-        assertThat(flat.next(), is(2));
-        assertThat(flat.next(), is(3));
+        assertSame(flat.next(), 1);
+        assertSame(flat.next(), 2);
+        assertSame(flat.next(), 3);
     }
 
     @Test
@@ -40,8 +39,7 @@ public class FlatMapTest {
                 List.of(1).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
-        assertThat(flat.hasNext(), is(true));
-        assertThat(flat.hasNext(), is(true));
+        assertTrue(flat.hasNext());
     }
 
     @Test
@@ -50,8 +48,8 @@ public class FlatMapTest {
                 List.of(1).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
-        assertThat(flat.next(), is(1));
-        assertThat(flat.hasNext(), is(false));
+        assertSame(flat.next(), 1);
+        assertFalse(flat.hasNext());
     }
 
     @Test(expected = NoSuchElementException.class)

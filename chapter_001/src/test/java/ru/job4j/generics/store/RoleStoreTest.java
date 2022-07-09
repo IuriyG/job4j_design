@@ -2,9 +2,6 @@ package ru.job4j.generics.store;
 
 import junit.framework.TestCase;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 /**
  * @author Iuriy Gaydarzhi.
  * @created 18.12.2020
@@ -32,7 +29,7 @@ public class RoleStoreTest extends TestCase {
      * Тест метода add.
      */
     public void testAdd() {
-        assertThat(memStore.findById("insider"), is(role3));
+        assertEquals(memStore.findById("insider"), role3);
     }
 
     /**
@@ -40,7 +37,7 @@ public class RoleStoreTest extends TestCase {
      */
     public void testReplace() {
         memStore.replace("coordinator", role5);
-        assertThat(memStore.findById("leader"), is(role5));
+        assertEquals(memStore.findById("leader"), role5);
     }
 
     /**
@@ -55,7 +52,7 @@ public class RoleStoreTest extends TestCase {
      * Тест метода findById.
      */
     public void testFindById() {
-        assertThat(memStore.findById("finisher"), is(role));
+        assertEquals(memStore.findById("finisher"), role);
         assertNull(memStore.findById("none"));
     }
 }
