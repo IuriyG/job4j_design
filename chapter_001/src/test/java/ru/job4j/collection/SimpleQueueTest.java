@@ -4,7 +4,8 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
  * @author Iuriy Gaydarzhi.
@@ -44,13 +45,14 @@ public class SimpleQueueTest {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.poll();
     }
-//    @Test
-//    public void whenPushPushPollAndPush() {
-//        SimpleQueue<Integer> queue = new SimpleQueue<>();
-//        queue.push(1);
-//        queue.push(2);
-//        queue.poll();
-//        queue.push(3);
-//        assertSame(queue.poll(),2);
-//    }
+
+    @Test
+    public void whenPushPushPollAndPush() {
+        SimpleQueue<Integer> queue = new SimpleQueue<>();
+        queue.push(1);
+        queue.push(2);
+        queue.poll();
+        queue.push(3);
+        assertSame(queue.poll(), 2);
+    }
 }
