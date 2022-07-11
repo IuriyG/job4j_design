@@ -18,6 +18,9 @@ import java.net.Socket;
  * @since 06.07.2022
  */
 public class EchoServer {
+    /**
+     * Экземпляр Логера.
+     */
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     /**

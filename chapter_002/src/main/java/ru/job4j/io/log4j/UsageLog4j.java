@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
  * @since 09.07.2022
  */
 public class UsageLog4j {
+    /**
+     * Экземпляр Логера.
+     */
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public static void main(String[] args) {
