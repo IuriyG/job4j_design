@@ -2,7 +2,6 @@ package ru.job4j.io.socket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.job4j.io.log4j.UsageLog4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,14 +20,14 @@ public class EchoServer {
     /**
      * Экземпляр Логера.
      */
-    private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
 
     /**
      * Метод создает серверный сокет, затем клиентский.
      * Пока сервер открыт принимает запросы.
      * Принимает входной поток и отправляем через буферизированные потоки.
      * Первым сообщением отправляется строка с кодом состояния.
-     * Для работы нужно использовать команду: {@code curl -i http:/localhost:9000/?msg=Hello}.
+     * Для работы нужно использовать команду: {@code curl -i http:/ /localhost:9000/?msg=Hello}.
      * Если входящее сообщение содержит значение:
      * <p>{@code "/?msg=Hello"},то отвечает: {@code Hello}.
      * <p>{@code "/?msg=Exit"},то отвечает: {@code Good Bye!} и завершает работу программы.
