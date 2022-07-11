@@ -13,21 +13,10 @@ public class UsageLog4j {
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public static void main(String[] args) {
-        byte b = 1;
-        short sh = 2;
-        int i = 4;
-        long l = 8L;
-        float f = 4;
-        double d = 8;
-        char c = '2';
-        boolean bo = true;
-        LOG.debug("Type of variables: Byte: {},"
-                + " Short: {},"
-                + " Int: {},"
-                + " Long: {},"
-                + " Float: {},"
-                + " Double: {},"
-                + " Char: {}, "
-                + "Boolean: {}", b, sh, i, l, f, d, c, bo);
+        try {
+            throw new Exception("Not supported code");
+        } catch (Exception e) {
+            LOG.error("Exception in log example", e);
+        }
     }
 }

@@ -1,5 +1,9 @@
 package ru.job4j.io.socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.job4j.io.log4j.UsageLog4j;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,11 +18,14 @@ import java.net.Socket;
  * @since 06.07.2022
  */
 public class EchoServer {
+    private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
+
     /**
      * Метод создает серверный сокет, затем клиентский.
      * Пока сервер открыт принимает запросы.
      * Принимает входной поток и отправляем через буферизированные потоки.
      * Первым сообщением отправляется строка с кодом состояния.
+     * Для работы нужно использовать команду: {@code curl -i http://localhost:9000/?msg=Hello}
      * Если входящее сообщение содержит значение:
      * <p>{@code "/?msg=Hello"},то отвечает: {@code Hello}.
      * <p>{@code "/?msg=Exit"},то отвечает: {@code Good Bye!} и завершает работу программы.
@@ -26,9 +33,8 @@ public class EchoServer {
      * Считывает все входящие строки и выводит их в консоль.
      *
      * @param args Водные данные.
-     * @throws IOException Исключение ввода-вывода.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
@@ -50,6 +56,8 @@ public class EchoServer {
                     out.flush();
                 }
             }
+        } catch (IOException e) {
+            LOG.error("Exeption: ", e);
         }
     }
 }
