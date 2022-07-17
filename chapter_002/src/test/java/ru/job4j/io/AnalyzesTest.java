@@ -13,11 +13,9 @@ import static org.junit.Assert.assertEquals;
  * @since 31.05.2022
  */
 public class AnalyzesTest {
-
+     Analyzes analyzes = new Analyzes();
     @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
-
-    Analyzes analyzes = new Analyzes();
+    public final TemporaryFolder folder = new TemporaryFolder();
 
     @Test
     public void whenTwoPeriods() throws IOException {
