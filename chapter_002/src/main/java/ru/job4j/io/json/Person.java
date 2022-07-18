@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 /**
  * Класс - Модель данных Личность.
- *
+ * Демонстрирует работу Преобразования XML в POJO (Plain Old Java Object).
  * @author Iuriy Gaydarzhi.
  * @since 16.07.2022
  */
@@ -64,31 +64,44 @@ public class Person {
         this.info = info;
     }
 
+    /**
+     * Конструктор.
+     */
     public Person() {
     }
 
+    /**
+     * Основной метод.
+     *
+     * @param args Входящие аргументы.
+     * @throws JAXBException Корневой класс исключений для всех исключений JAXB.
+     * @throws IOException   Исключение ввода-вывода.
+     */
     public static void main(String[] args) throws JAXBException, IOException {
         Person person = new Person(true, 90, "Male",
                 new Contact("Daniels", "Peter"),
                 new String[]{"Книга1", "Книга2", "Книга3"});
-
+        /* Получаем контекст для доступа к АПИ */
         JAXBContext context = JAXBContext.newInstance(Person.class);
+        /* Создаем сериализатор */
         Marshaller marshaller = context.createMarshaller();
+        /* Указываем, что нам нужно форматирование */
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
         String rsl;
         try (StringWriter writer = new StringWriter()) {
+            /* Сериализуем */
             marshaller.marshal(person, writer);
             rsl = writer.getBuffer().toString();
             System.out.println(rsl);
         }
-
+        /* Для десериализации нам нужно создать десериализатор */
         Unmarshaller unmarshaller = context.createUnmarshaller();
         try (StringReader reader = new StringReader(rsl)) {
+            /* Десериализуем */
             Person result = (Person) unmarshaller.unmarshal(reader);
             System.out.println(result);
         }
-
     }
 
     /**
