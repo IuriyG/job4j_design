@@ -27,6 +27,9 @@ public class Contact implements Serializable {
     @XmlAttribute
     private String surName;
 
+    /**
+     * Конструктор.
+     */
     public Contact() {
     }
 
@@ -83,6 +86,24 @@ public class Contact implements Serializable {
             Contact contactFromFile = (Contact) oos.readObject();
             System.out.println(contactFromFile);
         }
+    }
+
+    /**
+     * Геттер для поля Имя.
+     *
+     * @return Имя.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Геттер для поля Фамилия.
+     *
+     * @return Фамилию.
+     */
+    public String getSurName() {
+        return surName;
     }
 
     /**

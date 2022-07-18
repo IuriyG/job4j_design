@@ -15,6 +15,7 @@ import java.util.Arrays;
 /**
  * Класс - Модель данных Личность.
  * Демонстрирует работу Преобразования XML в POJO (Plain Old Java Object).
+ *
  * @author Iuriy Gaydarzhi.
  * @since 16.07.2022
  */
@@ -102,6 +103,51 @@ public class Person {
             Person result = (Person) unmarshaller.unmarshal(reader);
             System.out.println(result);
         }
+    }
+
+    /**
+     * Геттер для поля Статус личности.
+     *
+     * @return Статус.
+     */
+    public boolean isAlive() {
+        return alive;
+    }
+
+    /**
+     * Геттер для поля Возраст личности.
+     *
+     * @return Возраст.
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * Геттер для поля Пол личности.
+     *
+     * @return Пол.
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * Геттер для поля Информация и книгах.
+     *
+     * @return Информацию.
+     */
+    public String[] getInfo() {
+        return info;
+    }
+
+    /**
+     * Геттер для поля Объект {@linkplain Contact}.
+     *
+     * @return Объект.
+     */
+    public Contact getContact() {
+        return contact;
     }
 
     /**
