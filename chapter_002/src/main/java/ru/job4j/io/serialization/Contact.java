@@ -1,5 +1,7 @@
 package ru.job4j.io.serialization;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 
 /**
@@ -8,6 +10,7 @@ import java.io.*;
  * @author Iuriy Gaydarzhi.
  * @since 15.07.2022
  */
+@XmlRootElement(name = "contact")
 public class Contact implements Serializable {
     /**
      * Поле класса, исходный файл.
@@ -16,11 +19,16 @@ public class Contact implements Serializable {
     /**
      * Поле класса, Имя контакта.
      */
-    private final String name;
+    @XmlAttribute
+    private String name;
     /**
      * Поле класса, Фамилия контакта.
      */
-    private final String surName;
+    @XmlAttribute
+    private String surName;
+
+    public Contact() {
+    }
 
     /**
      * Конструктор.

@@ -5,7 +5,7 @@
              new String[]{"Книга1", "Книга2", "Книга3"}); -->
 
 <person alive="true" age="90" gender="male">
-    <Contact surname="Daniels" name="Peter"/>
+    <contact surName="Daniels" name="Peter"/>
     <infoses>
         <infos>Книга1</infos>
         <infos>Книга2</infos>
