@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Опишем объект: package ru.job4j.io.json.Person -->
+<!-- Person person = new Person(true, 90, "Male",
+             new Contact("Daniels", "Peter"),
+             new String[]{"Книга1", "Книга2", "Книга3"}); -->
+
+<person alive="true" age="90" gender="male">
+    <Contact surname="Daniels" name="Peter"/>
+    <infoses>
+        <infos>Книга1</infos>
+        <infos>Книга2</infos>
+        <infos>Книга3</infos>
+    </infoses>
+</person>
