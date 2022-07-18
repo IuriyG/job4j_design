@@ -5,11 +5,20 @@ import com.google.gson.GsonBuilder;
 import ru.job4j.io.serialization.Contact;
 
 /**
+ * Класс демонстрирует работу
+ *
  * @author Iuriy Gaydarzhi.
  * @since 17.07.2022
  */
 public class JSonUsage {
-
+    /**
+     * Основной метод.
+     * Создаем объект {@linkplain Person}.
+     * Преобразуем объект в JSON строку, выводим в консоль.
+     * Формируем объект JSON, считываем его м выводим в консоль.
+     *
+     * @param args Входящие аргументы.
+     */
     public static void main(String[] args) {
         Person person = new Person(true, 90, "Male",
                 new Contact("Daniels", "Peter"),
