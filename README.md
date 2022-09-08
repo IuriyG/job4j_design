@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/IuriyG/job4j_design.svg?branch=master)](https://travis-ci.org/IuriyG/job4j_design)
 ![GitHub language count](https://img.shields.io/github/languages/count/IuriyG/job4j_design)
-[![jdk14](https://img.shields.io/badge/JDK-14-blue.svg)](http://jdk.java.net/14/)
+[![jdk17](https://img.shields.io/badge/JDK-17-blue.svg)](http://jdk.java.net/17/)
 ![GitHub top language](https://img.shields.io/github/languages/top/IuriyG/job4j_design)
 ![Lines of code](https://img.shields.io/tokei/lines/github/IuriyG/job4j_design)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/IuriyG/job4j_design)
